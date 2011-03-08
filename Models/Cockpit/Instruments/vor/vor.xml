@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <params>
+  <nav-to-flag>/instrumentation/nav[0]/to-flag</nav-to-flag>
+  <nav-from-flag>/instrumentation/nav[0]/from-flag</nav-from-flag>
+  <nav-radial-selected>/instrumentation/nav[0]/radials/selected-deg</nav-radial-selected>
+  <nav-gs-needle-deflection>/instrumentation/nav[0]/filtered-gsNAV0-deflection</nav-gs-needle-deflection>
+  <nav-heading-needle-deflection>/instrumentation/nav[0]/filtered-cdiNAV0-deflection</nav-heading-needle-deflection>
+  <nav-in-range>/instrumentation/nav[0]/in-range</nav-in-range>
+  <gs-in-range>/instrumentation/nav[0]/gs-in-range</gs-in-range>
+ </params>
+
+ <path>vor.ac</path>
+
+ <animation>
+  <name>RingTransform</name>
+  <type>rotate</type>
+  <object-name>Ring</object-name>
+   <property alias="../../params/nav-radial-selected"/>
+  <factor>-1</factor>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+<!--	VOR 1 Radial adjust  -->
+ <animation>
+  <type>pick</type>
+  <object-name>click-L</object-name>
+  <visible>false</visible>
+  <action>
+    <name>small decrease</name>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav/radials/selected-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>large decrease</name>
+    <button>1</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav/radials/selected-deg</property>
+      <step>-5</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small decrease (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav/radials/selected-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small increase (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav/radials/selected-deg</property>
+      <step>1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+  <object-name>click-R</object-name>
+  <visible>false</visible>
+  <action>
+    <name>small increase</name>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav/radials/selected-deg</property>
+      <step>1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>large increase</name>
+    <button>1</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav/radials/selected-deg</property>
+      <step>5</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small decrease (scrollwheel)</name>
+    <button>3</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav/radials/selected-deg</property>
+      <step>-1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+  <action>
+    <name>small increase (scrollwheel)</name>
+    <button>4</button>
+    <repeatable>true</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/instrumentation/nav/radials/selected-deg</property>
+      <step>1</step>
+      <min>0</min>
+      <max>360</max>
+      <wrap>1</wrap>
+    </binding>
+  </action>
+ </animation>
+
+ <animation>
+  <name>Alpha Order Group</name>
+  <object-name>Face</object-name>
+  <object-name>LocalizerNeedleTransform</object-name>
+  <object-name>GlideslopeNeedleTransform</object-name>
+  <object-name>RingTransform</object-name>
+  <object-name>Front</object-name>
+ </animation>
+
+</PropertyList>
+
+

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+Usage: fgfs - -prop:/sim/remote/pilot-callsign="remote pilot callsign" - -aircraft=AH-1-cp
+-->
+
+<PropertyList>
+
+  <sim>
+
+    <description>Bell AH-1 Cobra (Co-pilot)</description>
+    <status>alpha</status>
+    <author>Jack Mermod(3D, FDM, Nasal, Shaders) Simon Lister(3D, Textures, Effects), Layne Bush(Instrumentation), Heiko Shultz(3d, FDM, Nasal, Textures)</author>
+    <license>GPL v2</license>
+
+    <flight-model>null</flight-model>
+
+    <sound>
+      <path>Aircraft/AH-1/Sounds/AH1-sound.xml</path>
+    </sound>
+
+    <model>
+      <path>Aircraft/AH-1/Models/AH-1-cp.xml</path>
+    </model>	
+
+    <startup>
+	<splash-texture>Aircraft/AH-1/AH-1_Splash.png</splash-texture>
+    </startup>
+
+    <hud>   
+      <enable3d>false</enable3d>
+    </hud>
+
+    <!-- Views -->
+
+    <view n="0">
+	<name>Gunner/Co-Pilot View</name>
+	<type>lookfrom</type>
+	<internal archive="y">true</internal>
+	<config>
+	<from-model type="bool">true</from-model>
+	<ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+	<x-offset-m type="double"> 0.00</x-offset-m>
+	<y-offset-m type="double"> 0.12</y-offset-m>
+	<z-offset-m type="double">-8.55</z-offset-m>
+	<pitch-offset-deg>-15</pitch-offset-deg>
+	<default-field-of-view-deg type="double">64.0</default-field-of-view-deg>
+	<limits>
+	<enabled type="bool">true</enabled>
+	<left>
+	<heading-max-deg type="double">140</heading-max-deg>
+	<x-offset-max-m type="double">0.20</x-offset-max-m>
+	<x-offset-threshold-deg type="double">25</x-offset-threshold-deg>
+	</left>
+	<right>
+	<heading-max-deg type="double">140</heading-max-deg>
+	<x-offset-max-m type="double">0.20</x-offset-max-m>
+	<x-offset-threshold-deg type="double">25</x-offset-threshold-deg>
+	</right>
+	</limits>
+	</config>
+    </view>
+
+    <menubar>
+      <default>
+
+        <menu n="10">
+          <label>AH-1 (Co-pilot)</label>
+          <enabled type="bool">true</enabled>
+
+          <item>
+            <label>Select MP-pilot</label>
+            <binding>
+              <command>nasal</command>
+              <script>
+                dual_control_tools.copilot_dialog.show(aircraft_dual_control.pilot_type);
+              </script>
+            </binding>
+          </item>
+          
+        </menu>
+      </default>
+    </menubar>
+
+  </sim>
+
+  <nasal>
+    <dual_control_tools>
+      <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+    </dual_control_tools>
+    <aircraft_dual_control>
+      <file>Aircraft/AH-1/Nasal/dual-control.nas</file>
+    </aircraft_dual_control>
+    <dual_control>
+      <file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>
+    </dual_control>
+  </nasal>
+
+</PropertyList>

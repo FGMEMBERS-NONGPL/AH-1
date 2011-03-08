@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <sim>
+  <model>
+   <livery>
+    <name type="string">Sky Soldiers</name>
+    <gun type="bool">true</gun>
+    <missiles type="bool">false</missiles>
+    <texture>Liveries/skysoldiers.png</texture>
+   </livery>
+   <livery-2>
+    <texture>Liveries/skysoldiers1.png</texture>
+   </livery-2>
+   <livery-3>
+    <texture>Liveries/skysoldiers2.png</texture>
+   </livery-3>
+   <livery-4>
+    <texture>Liveries/skysoldiers3.png</texture>
+   </livery-4>
+   <livery-5>
+    <texture>Liveries/skysoldiers4.png</texture>
+   </livery-5>
+   <livery-6>
+    <texture>Liveries/skysoldiers5.png</texture>
+   </livery-6>
+  </model>
+ </sim>
+</PropertyList>

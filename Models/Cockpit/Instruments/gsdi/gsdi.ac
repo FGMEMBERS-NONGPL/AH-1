@@ -1,0 +1,79 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 0.6 0.6 0.6  spec 0.2 0.2 0.2  shi 128  trans 0
+MATERIAL "material" rgb 1 1 1  amb 1 1 1  emis 0.6 0.6 0.6  spec 0.5 0.5 0.5  shi 72  trans 0
+OBJECT world
+kids 4
+OBJECT poly
+name "vneedle"
+loc -0.00409506 3.70082e-005 0
+crease 45.000000
+numvert 4
+0.00409547 0.0371032 -0.00110468
+0.00409547 -0.0371392 -0.00108981
+0.00409547 -0.0371292 0.00114183
+0.00409547 0.0371131 0.00112697
+numsurf 1
+SURF 0x0
+mat 1
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+kids 0
+OBJECT poly
+name "uneedle"
+loc -0.00409506 3.70082e-005 0
+crease 45.000000
+numvert 4
+0.00409547 0.00109601 0.0371045
+0.00409547 0.00109848 -0.0371392
+0.00409547 -0.00113316 -0.0371292
+0.00409547 -0.00113564 0.0371131
+numsurf 1
+SURF 0x0
+mat 1
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+kids 0
+OBJECT poly
+name "Face"
+loc -0.00409506 3.70082e-005 0
+texture "gsdi.png"
+crease 45.000000
+numvert 4
+0 0.0410991 -0.0410991
+0 -0.0410991 -0.0410991
+0 -0.0410991 0.0410991
+0 0.0410991 0.0410991
+numsurf 1
+SURF 0x0
+mat 1
+refs 4
+0 0.994141 0.994141
+3 0 0.994141
+2 0 0
+1 0.994141 0
+kids 0
+OBJECT poly
+name "rect"
+loc 0.000160092 5.80065e-005 9.82732e-005
+texture "gsdi_reflejo.png"
+crease 45.000000
+numvert 4
+0 -0.0402219 -0.0402278
+0 -0.0402219 0.0402278
+0 0.0402219 0.0402278
+0 0.0402219 -0.0402278
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+3 0 1
+2 1 1
+1 1 0
+0 0 0
+kids 0

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<path>firewatch_turret.ac</path>
+
+<animation>
+<type>shader</type>
+<shader>chrome</shader>
+<texture>glass_shader.png</texture>
+<object-name>Glass</object-name>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>Glass</object-name>
+<object-name>Main</object-name>
+<condition>
+<property>sim/model/livery/camera</property>
+<value type="bool">false</value>
+<!--<not>
+<property>sim/model/livery/camera</property>
+<value type="bool">true</value>
+</not>-->
+</condition>
+</animation>
+
+
+</PropertyList>
