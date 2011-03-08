@@ -90,6 +90,13 @@
 <object-name>copilotdoor2</object-name>
 </animation>
 
+<!--<effect>
+		<inherits-from>Aircraft/AH-1/Models/Shaders/bumpspec</inherits-from>
+		<object-name>copilotdoor3</object-name>
+		<object-name>main</object-name>
+		<object-name>pilotdoor3</object-name>
+</effect>-->
+
 <!-- Dust Particles -->
 
 <!--<model>
@@ -245,12 +252,7 @@
 <object-name>missiles_R</object-name>
 <object-name>missiles_L</object-name>
 <condition>
-<property>sim/model/livery/missiles</property>
-<value type="bool">false</value>
-<!--<not>
-<property>sim/model/livery/missiles</property>
-<value type="bool">true</value>
-</not>-->
+<property>sim/model/ah1/missiles</property>
 </condition>
 </animation>
 
@@ -258,12 +260,7 @@
 <type>select</type>
 <object-name>minigun</object-name>
 <condition>
-<property>sim/model/livery/gun</property>
-<value type="bool">false</value>
-<!--<not>
-<property>sim/model/livery/gun</property>
-<value type="bool">true</value>
-</not>-->
+<property>sim/model/ah1/gun</property>
 </condition>
 </animation>
 

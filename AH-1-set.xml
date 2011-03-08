@@ -79,6 +79,10 @@
     <livery-6>
 	   <file type="string">marines</file>
 	</livery-6>
+   <ah1>
+    <gun>true</gun>
+    <missiles>true</missiles>   
+   </ah1>  
     </model>
     
 <multiplay>

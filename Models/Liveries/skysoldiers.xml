@@ -5,8 +5,6 @@
   <model>
    <livery>
     <name type="string">Sky Soldiers</name>
-    <gun type="bool">true</gun>
-    <missiles type="bool">false</missiles>
     <texture>Liveries/skysoldiers.png</texture>
    </livery>
    <livery-2>
@@ -24,6 +22,10 @@
    <livery-6>
     <texture>Liveries/skysoldiers5.png</texture>
    </livery-6>
+   <ah1>
+    <gun>true</gun>
+    <missiles>false</missiles>   
+   </ah1>    
   </model>
  </sim>
 </PropertyList>
