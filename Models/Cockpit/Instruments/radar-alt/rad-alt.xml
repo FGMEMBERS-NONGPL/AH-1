@@ -4,19 +4,17 @@
 
   <path>rad-alt.ac</path>
 
- <animation>
+<!-- <animation>
   <type>scale</type>
   <x-offset>0.8</x-offset>
   <y-offset>0.8</y-offset>
   <z-offset>0.8</z-offset>
- </animation>
+ </animation> -->
 	
   <animation>
-    <object-name>fond</object-name>
     <object-name>face</object-name>
     <object-name>needle</object-name>
     <object-name>bug</object-name>
-    <object-name>vitre</object-name>
   </animation>
 
 

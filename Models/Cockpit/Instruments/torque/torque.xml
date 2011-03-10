@@ -5,7 +5,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Lneedle</object-name>
-		<property>sim/model/bo105/torque-pct</property>
+		<property>sim/model/AH-1/torque-pct</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-205</dep></entry>
 			<entry><ind>60</ind><dep>-90</dep></entry>
@@ -20,7 +20,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Rneedle</object-name>
-		<property>sim/model/bo105/torque-pct</property>
+		<property>sim/model/AH-1/torque-pct</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-205</dep></entry>
 			<entry><ind>60</ind><dep>-90</dep></entry>
