@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<path>AH-1W.ac</path>
+<offsets>
+<x-m>-6</x-m>
+<z-m>0.4</z-m>
+<heading-deg>90</heading-deg>
+</offsets>
+
+<!-- Mapping -->
+
+	<nasal>
+		<load>
+			var livery_update = aircraft.livery_update.new("Aircraft/AH-1/Models/Liveries", 10);
+		</load>
+
+		<unload>
+			livery_update.stop();
+		</unload>
+	</nasal>
+
+	<animation>
+		<type>material</type>
+		<object-name>rockets_R</object-name>
+		<object-name>rockets_L</object-name>
+		<object-name>missiles_R</object-name>
+        <object-name>missiles_L</object-name>
+        <object-name>pylons</object-name>      
+		<property-base>sim/model/livery</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>cobra.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+        <object-name>radar</object-name>
+        <object-name>minigun</object-name>
+        <object-name>turret</object-name>
+		<property-base>sim/model/livery-2</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>cobra1.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>main1</object-name>
+		<property-base>sim/model/livery-3</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>cobra2.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>engines</object-name>
+		<property-base>sim/model/livery-4</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>cobra3.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>canopyframe</object-name>
+        <object-name>copilotdoor1</object-name>
+        <object-name>pilotdoor2</object-name>
+		<property-base>sim/model/livery-5</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>cobra4.png</texture>
+	</animation>
+    
+	<animation>
+		<type>material</type>
+		<object-name>copilotdoor3</object-name>
+        <object-name>main</object-name>
+        <object-name>pilotdoor3</object-name>        
+		<property-base>sim/model/livery-6</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>cobra5.png</texture>
+	</animation>
+        
+
+<!-- Reflection -->
+<animation>
+<type>shader</type>
+<shader>chrome</shader>
+<texture>Shaders/glass_shader.png</texture>
+<object-name>glass</object-name>
+<object-name>pilotdoor1</object-name>
+<object-name>copilotdoor2</object-name>
+</animation>
+
+<!--<effect>
+		<inherits-from>Aircraft/AH-1/Models/Shaders/bumpspec</inherits-from>
+		<object-name>copilotdoor3</object-name>
+		<object-name>main</object-name>
+		<object-name>pilotdoor3</object-name>
+</effect>-->
+
+<!-- Dust Particles -->
+
+<!--<model>
+    <name>Sparks Particles</name>
+    <path>Aircraft/AH-1/Models/Shaders/rotor-particle.xml</path>
+    <offsets>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+      <roll-deg>0</roll-deg>
+      <pitch-deg>0</pitch-deg>
+      <heading-deg>0</heading-deg>
+    </offsets>
+  </model> -->
+
+<!-- Gun Turret Animations -->
+
+<animation>
+<type>spin</type>
+<object-name>minigun</object-name>
+<property>/sim/time/elapsed-sec</property>
+<factor>5.55555</factor>
+<condition>
+<property>controls/armament/trigger</property>
+</condition>
+<center>
+<x-m>0</x-m>
+<y-m>2.79</y-m>
+<z-m>-1.55</z-m>
+</center>
+<axis>
+<x>0</x>
+<y>1</y>
+<z>0</z>
+</axis>
+</animation>
+
+<animation>
+<type>rotate</type>
+<object-name>minigun</object-name>
+<property>sim/model/turret-positions/turretz</property>
+<factor>1</factor>
+<axis>
+<x>1</x>
+<y>0</y>
+<z>0</z>
+</axis>
+<center>
+<x-m>0</x-m>
+<y-m>2.79</y-m>
+<z-m>-1.55</z-m>
+</center>
+</animation>
+
+
+<animation>
+<type>rotate</type>
+<object-name>minigun</object-name>
+<object-name>turret</object-name>
+<property>sim/model/turret-positions/turretx</property>
+<factor>1</factor>
+<axis>
+<x>0</x>
+<y>0</y>
+<z>1</z>
+</axis>
+<center>
+<x-m>0</x-m>
+<y-m>2.79</y-m>
+<z-m>-1.55</z-m>
+</center>
+</animation> 
+
+
+<!-- Canopy Animations -->
+
+<animation>
+<type>pick</type>
+<object-name>copilotdoor1</object-name>
+<object-name>copilotdoor2</object-name>
+<object-name>copilotdoor3</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>nasal</command>
+<script>ah1.GunnerDoor.toggle();</script>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>rotate</type>
+<object-name>copilotdoor1</object-name>
+<object-name>copilotdoor2</object-name>
+<object-name>copilotdoor3</object-name>
+<property>sim/multiplay/generic/float[0]</property>
+<factor>70</factor>
+<center>
+<x-m>-0.22</x-m>
+<y-m>2.65</y-m>
+<z-m>0.08</z-m>
+</center>
+<axis>
+<x>0</x>
+<y>1</y>
+<z>-0.2</z>
+</axis>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>pilotdoor1</object-name>
+<object-name>pilotdoor2</object-name>
+<object-name>pilotdoor3</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>nasal</command>
+<script>ah1.PilotDoor.toggle();</script>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>rotate</type>
+<object-name>pilotdoor1</object-name>
+<object-name>pilotdoor2</object-name>
+<object-name>pilotdoor3</object-name>
+<property>sim/multiplay/generic/float[1]</property>
+<factor>-70</factor>
+<center>
+<x-m>0.22</x-m>
+<y-m>1.75</y-m>
+<z-m>0.19</z-m>
+</center>
+<axis>
+<x>0</x>
+<y>1</y>
+<z>-0.1</z>
+</axis>
+</animation>
+
+<!-- Livery Type Animations -->
+
+<animation>
+<type>select</type>
+<object-name>lau_l</object-name>
+<object-name>lau_r</object-name>
+<object-name>hellfires_l</object-name>
+<object-name>hellfires_r</object-name>
+<condition>
+<property>sim/model/ah1/missiles</property>
+</condition>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>minigun</object-name>
+<condition>
+<property>sim/model/ah1/gun</property>
+</condition>
+</animation>
+
+<!-- Submodels -->
+
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Cobra_Cockpit.xml</path>
+<offsets>
+<x-m>0</x-m>
+<y-m>0</y-m>
+<z-m>0.0</z-m>
+<heading-deg>0</heading-deg>
+</offsets>
+</model>
+
+
+<model>
+<path>Aircraft/AH-1/Models/MainRotor/mainrotor.xml</path>
+<offsets>
+<x-m>0</x-m>
+<y-m>0</y-m>
+<z-m>1</z-m>
+<pitch-deg>0</pitch-deg>
+<heading-deg>38</heading-deg>
+</offsets>
+</model>
+
+<model>
+<path>Aircraft/AH-1/Models/TailRotor/tailrotor.xml</path>
+<offsets>
+<x-m>0.2</x-m>
+<y-m>-8.36</y-m>
+<z-m>0.55</z-m>
+<roll-deg>90</roll-deg>
+<heading-deg>90</heading-deg>
+</offsets>
+</model>
+
+<!--<model>
+<path>Aircraft/AH-1/Models/Stores/FireWatch/firewatch_turret.xml</path>
+<offsets>
+<x-m>0</x-m>
+<y-m>2.9</y-m>
+<z-m>-1.43</z-m>
+<heading-deg>180</heading-deg>
+</offsets>
+</model> -->
+
+
+</PropertyList>

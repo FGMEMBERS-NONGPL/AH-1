@@ -4,24 +4,16 @@
 
   <path>fflowgauge.ac</path>
 	
+<animation>
+  <type>scale</type>
+  <x-offset>0.62</x-offset>
+  <y-offset>0.62</y-offset>
+  <z-offset>0.62</z-offset>
+ </animation>  
+
   <animation>
-    <object-name>fond</object-name>
     <object-name>face</object-name>
     <object-name>needle</object-name>
-
-    <object-name>vitre</object-name>
-  </animation>
-
-  <animation>
-    <type>noshadow</type>
-    <object-name>vitre</object-name>
-  </animation>
-
-  <animation>
-    <type>shader</type>
-    <shader>chrome</shader>
-    <texture>Aircraft/Generic/Effects/glass_shader.png</texture>
-    <object-name>vitre</object-name>
   </animation>
 
   <animation>
@@ -50,5 +42,11 @@
       <z>  0 </z>
     </axis>
   </animation>
+ 
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>   
 
 </PropertyList>

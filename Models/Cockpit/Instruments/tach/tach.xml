@@ -2,7 +2,14 @@
 
 <PropertyList>
 	<path>tach.ac</path>
-
+    
+ <animation>
+  <type>scale</type>
+  <x-offset>0.8</x-offset>
+  <y-offset>0.8</y-offset>
+  <z-offset>0.8</z-offset>
+ </animation>
+ 
 	<animation>
 		<type>rotate</type>
 		<object-name>TurbineNeedle1</object-name>
@@ -48,5 +55,11 @@
 		</axis>
 	</animation>
 	
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>    
+    
 </PropertyList>
 

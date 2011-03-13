@@ -5,23 +5,8 @@
   <path>fuelqty.ac</path>
 	
   <animation>
-    <object-name>fond</object-name>
     <object-name>face</object-name>
     <object-name>needle</object-name>
-
-    <object-name>vitre</object-name>
-  </animation>
-
-  <animation>
-    <type>noshadow</type>
-    <object-name>vitre</object-name>
-  </animation>
-
-  <animation>
-    <type>shader</type>
-    <shader>chrome</shader>
-    <texture>Aircraft/Generic/Effects/glass_shader.png</texture>
-    <object-name>vitre</object-name>
   </animation>
 
   <animation>
@@ -50,6 +35,12 @@
       <z>  0 </z>
     </axis>
   </animation>
+
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
 
 </PropertyList>
 

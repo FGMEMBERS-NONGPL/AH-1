@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 
 <PropertyList>
+
+<animation>
+  <type>scale</type>
+  <x-offset>0.4</x-offset>
+  <y-offset>0.4</y-offset>
+  <z-offset>0.4</z-offset>
+ </animation>  
+ 
 	<path>gsdi.ac</path>
 	<animation>
 		<type>translate</type>
@@ -29,5 +37,11 @@
 			<z>0</z>
 		</axis>
 	</animation>
+    
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>    
 	
 </PropertyList>

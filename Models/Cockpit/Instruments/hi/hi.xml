@@ -169,6 +169,12 @@
   </action>
  </animation>
 
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
 </PropertyList>
 
 
