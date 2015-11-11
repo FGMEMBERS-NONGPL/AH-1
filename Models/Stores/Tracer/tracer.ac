@@ -1,9 +1,10 @@
 AC3Db
-MATERIAL "red" rgb 0 0 0  amb 0 0 0  emis 1 0.65 0  spec 0 0 0  shi 0  trans 0
+MATERIAL "ac3dmat3" rgb 1 0 0  amb 1 0 0  emis 0 0 0  spec 0.2 0.2 0.2  shi 128  trans 0
 OBJECT world
 kids 1
 OBJECT poly
 name "trace"
+crease 45.000000
 numvert 7
 -20 0.02 -0.034642
 -20 -0.02 -0.034644

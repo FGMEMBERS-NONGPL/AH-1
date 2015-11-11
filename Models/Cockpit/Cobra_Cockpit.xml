@@ -3,9 +3,633 @@
 <PropertyList>
 <path>Cobra_Cockpit.ac</path>
 
+
+<animation>
+<type>range</type>
+<min-m>0</min-m>
+<max-m>100</max-m>
+</animation>
+
+<!--
 <model>
 <path>Aircraft/AH-1/Models/Cockpit/pilot.xml</path>
 </model>
+-->
+<!-- Animations -->
+
+<!-- Switches -->
+
+<animation>
+<type>pick</type>
+<object-name>station2btn</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>sim/model/AH-1/weapons/station2</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>station3btn</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>sim/model/AH-1/weapons/station3</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>masterarm1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>sim/model/AH-1/weapons/master-arm-switch</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>masterarm2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>sim/model/AH-1/weapons/master-arm-switch</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>masterarm1</object-name>
+<condition>
+<equals>
+<property>sim/model/AH-1/weapons/master-arm-switch</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>masterarm2</object-name>
+<condition>
+<equals>
+<property>sim/model/AH-1/weapons/master-arm-switch</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+
+<animation>
+<type>pick</type>
+<object-name>generator2-switch1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/electric/engine[1]/generator</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>generator2-switch2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/electric/engine[1]/generator</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>generator2-switch1</object-name>
+<condition>
+<equals>
+<property>controls/electric/engine[1]/generator</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>generator2-switch2</object-name>
+<condition>
+<equals>
+<property>controls/electric/engine[1]/generator</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+
+<animation>
+<type>pick</type>
+<object-name>generator1-switch1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/electric/engine[0]/generator</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>generator1-switch2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/electric/engine[0]/generator</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>generator1-switch1</object-name>
+<condition>
+<equals>
+<property>controls/electric/engine[0]/generator</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>generator1-switch2</object-name>
+<condition>
+<equals>
+<property>controls/electric/engine[0]/generator</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+
+<animation>
+<type>pick</type>
+<object-name>antiice-switch1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>no/property/assigned/yet</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>antiice-switch2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>no/property/assigned/yet</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>antiice-switch1</object-name>
+<condition>
+<equals>
+<property>no/property/assigned/yet</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>antiice-switch2</object-name>
+<condition>
+<equals>
+<property>no/property/assigned/yet</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+
+<animation>
+<type>pick</type>
+<object-name>pitot-heat-switch1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>no/property/assigned/yet</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>pitot-heat-switch2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>no/property/assigned/yet</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>pitot-heat-switch1</object-name>
+<condition>
+<equals>
+<property>no/property/assigned/yet</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>pitot-heat-switch2</object-name>
+<condition>
+<equals>
+<property>no/property/assigned/yet</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+
+<animation>
+<type>pick</type>
+<object-name>avionics-switch1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/electric/avionics-switch</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>avionics-switch2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/electric/avionics-switch</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>avionics-switch1</object-name>
+<condition>
+<equals>
+<property>controls/electric/avionics-switch</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>avionics-switch2</object-name>
+<condition>
+<equals>
+<property>controls/electric/avionics-switch</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+
+<animation>
+<type>pick</type>
+<object-name>battery-switch1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/electric/battery-switch</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>battery-switch2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/electric/battery-switch</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>battery-switch1</object-name>
+<condition>
+<equals>
+<property>controls/electric/battery-switch</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>battery-switch2</object-name>
+<condition>
+<equals>
+<property>controls/electric/battery-switch</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+ 
+
+<animation>
+<type>pick</type>
+<object-name>engstrt1-switch2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/engines/engine[0]/starter</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>engstrt2-switch2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/engines/engine[1]/starter</property>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>engstrt1-switch1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/engines/engine[0]/starter</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>pick</type>
+<object-name>engstrt2-switch1</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>property-toggle</command>
+<property>controls/engines/engine[1]/starter</property>
+<value>false</value>
+</binding>
+</action>
+</animation>
+
+<animation>
+<type>select</type>
+<object-name>engstrt1-switch1</object-name>
+<condition>
+<equals>
+<property>controls/engines/engine[0]/starter</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>engstrt1-switch2</object-name>
+<condition>
+<equals>
+<property>controls/engines/engine[0]/starter</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+ 
+<animation>
+<type>select</type>
+<object-name>engstrt2-switch1</object-name>
+<condition>
+<equals>
+<property>controls/engines/engine[1]/starter</property>
+<value>true</value>
+</equals>
+</condition> 
+</animation>  
+<animation>
+<type>select</type>
+<object-name>engstrt2-switch2</object-name>
+<condition>
+<equals>
+<property>controls/engines/engine[1]/starter</property>
+<value>false</value>
+</equals>
+</condition> 
+</animation> 
+
+<!-- Collective -->
+
+<animation>
+<type>rotate</type>
+<object-name>collective</object-name>
+<property>/controls/engines/engine/throttle</property>
+<factor>-22</factor>
+<center>
+<x-m>-0.34</x-m>
+<y-m>1.5</y-m>
+<z-m>-0.65</z-m>
+</center>
+<axis>
+<x>1</x>
+<y>0</y>
+<z>0</z>
+</axis>
+</animation>
+
+<!-- Pedals -->
+
+<animation>
+<type>translate</type>
+<object-name>l_pedal</object-name>
+<property>controls/flight/rudder</property>
+<factor>0.07</factor>
+<axis>
+<x>0</x>
+<y>1</y>
+<z>0</z>
+</axis>
+</animation>
+
+<animation>
+<type>translate</type>
+<object-name>r_pedal</object-name>
+<property>controls/flight/rudder</property>
+<factor>0.07</factor>
+<axis>
+<x>0</x>
+<y>-1</y>
+<z>0</z>
+</axis>
+</animation>
+
+<!-- Stick -->
+
+<animation>
+<type>rotate</type>
+<object-name>yoke</object-name>
+<object-name>stick-rubber-hose-0</object-name>
+<property>controls/flight/elevator</property>
+<factor>13</factor>
+<center>
+<x-m>0</x-m>
+<y-m>1.8</y-m>
+<z-m>-0.95</z-m>
+</center>
+<axis>
+<x>-1</x>
+<y>0</y>
+<z>0</z>
+</axis>
+</animation>
+
+<animation>
+<type>rotate</type>
+<object-name>yoke</object-name>
+<object-name>stick-rubber-hose-0</object-name>
+<property>controls/flight/aileron</property>
+<factor>13</factor>
+<center>
+<x-m>0</x-m>
+<y-m>1.8</y-m>
+<z-m>-0.95</z-m>
+</center>
+<axis>
+<x>0</x>
+<y>1</y>
+<z>0</z>
+</axis>
+</animation>
+
+<animation>
+<type>translate</type>
+<object-name>stick-rubber-hose-1</object-name>
+<property>controls/flight/elevator</property>
+<factor>0.001</factor>
+<axis>
+<x>-1</x>
+<y>0</y>
+<z>0</z>
+</axis>
+</animation>
+
+<animation>
+<type>translate</type>
+<object-name>stick-rubber-hose-1</object-name>
+<property>controls/flight/aileron</property>
+<factor>0.001</factor>
+<axis>
+<x>0</x>
+<y>1</y>
+<z>0</z>
+</axis>
+</animation>
+
+<animation>
+<type>translate</type>
+<object-name>stick-rubber-hose-2</object-name>
+<property>controls/flight/elevator</property>
+<factor>0.001</factor>
+<axis>
+<x>-1</x>
+<y>0</y>
+<z>0</z>
+</axis>
+</animation>
+
+<animation>
+<type>translate</type>
+<object-name>stick-rubber-hose-2</object-name>
+<property>controls/flight/aileron</property>
+<factor>0.001</factor>
+<axis>
+<x>0</x>
+<y>1</y>
+<z>0</z>
+</axis>
+</animation>
+
+<!-- Instruments -->
 
 <model>
 <path>Aircraft/AH-1/Models/Cockpit/Instruments/engine/temp.xml</path>
@@ -172,6 +796,18 @@
 </offsets>
 </model>
 
+
+<model>
+<path>Aircraft//Instruments-3d/rwr/rwr.xml</path>
+<offsets>
+<x-m>0.099</x-m>
+<y-m>1.89</y-m>
+<z-m>-0.12</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>0</pitch-deg>
+</offsets>
+</model>
+
 <model>
 <path>Aircraft/AH-1/Models/Cockpit/Instruments/clock/clock.xml</path>
 <offsets>
@@ -226,30 +862,6 @@
 <pitch-deg>-5</pitch-deg>
 </offsets>
 </model>
-<!--
-<model>
-<path>Aircraft/AH-1/Models/Cockpit/Instruments/engine/engine.xml</path>
-<offsets>
-<x-m>-0.095</x-m>
-<y-m>1.975</y-m>
-<z-m>-0.325</z-m>
-<roll-deg>-5</roll-deg>
-<heading-deg>0</heading-deg>
-<pitch-deg>0</pitch-deg>
-</offsets>
-</model>-->
-
-<!--<model>
-<path>Aircraft/Instruments-3d/rwr/rwr.xml</path>
-<offsets>
-<x-m>0.102</x-m>
-<y-m>1.887</y-m>
-<z-m>-0.12</z-m>
-<roll-deg>0</roll-deg>
-<heading-deg>270</heading-deg>
-<pitch-deg>0</pitch-deg>
-</offsets>
-</model> -->
 
 <model>
 <path>Aircraft/AH-1/Models/Cockpit/Instruments/torque/torque.xml</path>
@@ -274,143 +886,221 @@
 </offsets>
 </model>
 
-<!-- Collective -->
+<!-- Front Instruments -->
 
-<animation>
-<type>rotate</type>
-<object-name>collective</object-name>
-<property>/controls/engines/engine/throttle</property>
-<factor>-22</factor>
-<center>
-<x-m>-0.34</x-m>
-<y-m>1.5</y-m>
-<z-m>-0.65</z-m>
-</center>
-<axis>
-<x>1</x>
-<y>0</y>
-<z>0</z>
-</axis>
-</animation>
 
-<!-- Pedals -->
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/RMFD/RMFD.xml</path>
+<offsets>
+<x-m>0.003</x-m>
+<y-m>3.2</y-m>
+<z-m>-0.572</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>-46</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>0.8</y-offset>
+    <z-offset>0.9</z-offset>
+   </animation>
+  </overlay>
+</model>
 
-<animation>
-<type>translate</type>
-<object-name>l_pedal</object-name>
-<property>controls/flight/rudder</property>
-<factor>0.07</factor>
-<axis>
-<x>0</x>
-<y>1</y>
-<z>0</z>
-</axis>
-</animation>
 
-<animation>
-<type>translate</type>
-<object-name>r_pedal</object-name>
-<property>controls/flight/rudder</property>
-<factor>0.07</factor>
-<axis>
-<x>0</x>
-<y>-1</y>
-<z>0</z>
-</axis>
-</animation>
 
-<!-- Stick -->
 
-<animation>
-<type>rotate</type>
-<object-name>yoke</object-name>
-<object-name>stick-rubber-hose-0</object-name>
-<property>controls/flight/elevator</property>
-<factor>13</factor>
-<center>
-<x-m>0</x-m>
-<y-m>1.8</y-m>
-<z-m>-0.95</z-m>
-</center>
-<axis>
-<x>-1</x>
-<y>0</y>
-<z>0</z>
-</axis>
-</animation>
 
-<animation>
-<type>rotate</type>
-<object-name>yoke</object-name>
-<object-name>stick-rubber-hose-0</object-name>
-<property>controls/flight/aileron</property>
-<factor>13</factor>
-<center>
-<x-m>0</x-m>
-<y-m>1.8</y-m>
-<z-m>-0.95</z-m>
-</center>
-<axis>
-<x>0</x>
-<y>1</y>
-<z>0</z>
-</axis>
-</animation>
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/ai/ai.xml</path>
+<offsets>
+<x-m>0.196</x-m>
+<y-m>3.265</y-m>
+<z-m>-0.601</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>-5</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>0.3</x-offset>
+    <y-offset>0.62</y-offset>
+    <z-offset>0.62</z-offset>
+   </animation>
+  </overlay>
+</model>
 
-<animation>
-<type>translate</type>
-<object-name>stick-rubber-hose-1</object-name>
-<property>controls/flight/elevator</property>
-<factor>0.001</factor>
-<axis>
-<x>-1</x>
-<y>0</y>
-<z>0</z>
-</axis>
-</animation>
 
-<animation>
-<type>translate</type>
-<object-name>stick-rubber-hose-1</object-name>
-<property>controls/flight/aileron</property>
-<factor>0.001</factor>
-<axis>
-<x>0</x>
-<y>1</y>
-<z>0</z>
-</axis>
-</animation>
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/adf/adf.xml</path>
+<offsets>
+<x-m>0.197</x-m>
+<y-m>3.261</y-m>
+<z-m>-0.687</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>-5</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>0.8</y-offset>
+    <z-offset>0.8</z-offset>
+   </animation>
+  </overlay>
+</model>
 
-<animation>
-<type>translate</type>
-<object-name>stick-rubber-hose-2</object-name>
-<property>controls/flight/elevator</property>
-<factor>0.001</factor>
-<axis>
-<x>-1</x>
-<y>0</y>
-<z>0</z>
-</axis>
-</animation>
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/vsi/vsi.xml</path>
+<offsets>
+<x-m>0.196</x-m>
+<y-m>3.246</y-m>
+<z-m>-0.762</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>-5</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>1.05</y-offset>
+    <z-offset>1.05</z-offset>
+   </animation>
+  </overlay>>
+</model>
 
-<animation>
-<type>translate</type>
-<object-name>stick-rubber-hose-2</object-name>
-<property>controls/flight/aileron</property>
-<factor>0.001</factor>
-<axis>
-<x>0</x>
-<y>1</y>
-<z>0</z>
-</axis>
-</animation>
 
-<!-- Range -->
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/gsdi/gsdi.xml</path>
+<offsets>
+<x-m>0.275</x-m>
+<y-m>3.244</y-m>
+<z-m>-0.754</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>-5</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>1.6</y-offset>
+    <z-offset>1.6</z-offset>
+   </animation>
+  </overlay>>
+</model>
 
-	<animation>
-		<type>range</type>
-		<min-m>0</min-m>
-		<max-m>100</max-m>
-	</animation>
+
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/radar-alt/rad-alt.xml</path>
+<offsets>
+<x-m>0.266</x-m>
+<y-m>3.272</y-m>
+<z-m>-0.615</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>-8</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>0.68</y-offset>
+    <z-offset>0.68</z-offset>
+   </animation>
+  </overlay>
+</model>
+
+
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/altimeter/altimeter.xml</path>
+<offsets>
+<x-m>0.272</x-m>
+<y-m>3.263</y-m>
+<z-m>-0.683</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>-8</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>0.8</y-offset>
+    <z-offset>0.8</z-offset>
+   </animation>
+  </overlay>
+</model>
+
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/asi/asi.xml</path>
+<offsets>
+<x-m>0.127</x-m>
+<y-m>3.274</y-m>
+<z-m>-0.616</z-m>
+<heading-deg>270</heading-deg>
+<pitch-deg>-5</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>0.77</y-offset>
+    <z-offset>0.77</z-offset>
+   </animation>
+  </overlay>
+</model>
+
+
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/torque/torque.xml</path>
+<offsets>
+<x-m>0.129</x-m>
+<y-m>3.26</y-m>
+<z-m>-0.683</z-m>
+<heading-deg>270</heading-deg>
+<roll-deg>270</roll-deg>
+<pitch-deg>-8</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>0.77</y-offset>
+    <z-offset>0.77</z-offset>
+   </animation>
+  </overlay>
+</model>
+
+
+<model>
+<path>Aircraft/AH-1/Models/Cockpit/Instruments/tach/tach.xml</path>
+<offsets>
+<x-m>0.127</x-m>
+<y-m>3.249</y-m>
+<z-m>-0.75</z-m>
+<heading-deg>270</heading-deg>
+<roll-deg>270</roll-deg>
+<pitch-deg>-0</pitch-deg>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>0.77</y-offset>
+    <z-offset>0.77</z-offset>
+   </animation>
+  </overlay>
+</model>
+
+
 
 </PropertyList>

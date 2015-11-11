@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--empty mass: 10900-->
-<airplane mass="10900">
+<airplane mass="10900" version="YASIM_VERSION_CURRENT">
 
   <approach speed="80" aoa="16">
     <control-setting axis="/controls/engines/engine[0]/throttle" value="0.3"/>

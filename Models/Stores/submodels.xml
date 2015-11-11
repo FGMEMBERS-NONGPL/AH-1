@@ -5,13 +5,13 @@
 <!-- Gun -->
 
 	<submodel>
-		<name>MG_L</name>
+		<name>M197 3 Barrel 20mm Gun</name>
 		<model>Aircraft/AH-1/Models/Stores/Tracer/tracer.xml</model>
 		<trigger>controls/armament/trigger</trigger>
 		<speed>2750</speed>
 		<repeat>true</repeat>
 		<delay>0.08</delay>
-		<count>750</count>
+		<count>-1</count><!-- 750 -->
 		<x-offset>31</x-offset>
 		<y-offset>0</y-offset>
 		<z-offset>-5</z-offset>
@@ -21,6 +21,10 @@
 		<weight>0.2314</weight>
 		<eda>0.00049</eda>
 		<life>6</life>
+		<collision>true</collision>
+		<impact>true</impact>
+		<impact-reports>ai/models/model-impact</impact-reports>
+		<submodel-path>Aircraft/AH-1/Models/Stores/GAU-8A/bullet-submodel.xml</submodel-path>
 	</submodel>
 
 	<submodel>
@@ -29,7 +33,7 @@
 		<trigger>controls/armament/trigger</trigger>
 		<speed>0</speed>
 		<repeat>true</repeat>
-		<delay>0.08</delay>
+		<delay>0.8</delay>
 		<count>-1</count>
 		<x-offset>31</x-offset>
 		<y-offset>0</y-offset>
@@ -57,8 +61,8 @@
     <trigger>ai/submodels/submodel/flare-release</trigger>
     <speed>10</speed>
     <repeat>true</repeat>
-    <delay>0.4</delay>
-    <count>25</count>
+    <delay>0.2</delay>
+    <count>50</count>
     <x-offset>5</x-offset>
     <y-offset>0</y-offset>
     <z-offset>0</z-offset>
@@ -74,46 +78,12 @@
     <trigger>ai/submodels/submodel/flare-release</trigger>
     <speed>10</speed>
     <repeat>true</repeat>
-    <delay>0.4</delay>
-    <count>25</count>
+    <delay>0.2</delay>
+    <count>50</count>
     <x-offset>-5</x-offset>
     <y-offset>0</y-offset>
     <z-offset>0</z-offset>
     <yaw-offset>270</yaw-offset>
-    <life>5</life>
-    <buoyancy>8</buoyancy>
-    <eda>1.0</eda>
-  </submodel>
-  
- <submodel>
-    <name>chaff</name>
-    <model>Aircraft/AH-1/Models/Stores/Countermeasures/chaff.xml</model>
-    <trigger>ai/submodels/submodel/flare-release</trigger>
-    <speed>10</speed>
-    <repeat>true</repeat>
-    <delay>0.05</delay>
-    <count>150</count>
-    <x-offset>-5</x-offset>
-    <y-offset>0</y-offset>
-    <z-offset>0</z-offset>
-    <yaw-offset>270</yaw-offset>
-    <life>5</life>
-    <buoyancy>8</buoyancy>
-    <eda>1.0</eda>
-  </submodel>
-  
- <submodel>
-    <name>chaff</name>
-    <model>Aircraft/AH-1/Models/Stores/Countermeasures/chaff.xml</model>
-    <trigger>ai/submodels/submodel/flare-release</trigger>
-    <speed>10</speed>
-    <repeat>true</repeat>
-    <delay>0.05</delay>
-    <count>150</count>
-    <x-offset>5</x-offset>
-    <y-offset>0</y-offset>
-    <z-offset>0</z-offset>
-    <yaw-offset>90</yaw-offset>
     <life>5</life>
     <buoyancy>8</buoyancy>
     <eda>1.0</eda>

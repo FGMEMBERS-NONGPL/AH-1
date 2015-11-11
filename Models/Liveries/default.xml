@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <sim>
+  <model>
+   <livery>
+    <name type="string">marines</name>
+    <texture>Liveries/default/cobra.jpg</texture>
+   </livery>
+   <livery-2>
+    <texture>Liveries/default/cobra1.jpg</texture>
+   </livery-2>
+   <livery-3>
+    <texture>Liveries/default/cobra2.jpg</texture>
+   </livery-3>
+   <livery-4>
+    <texture>Liveries/default/cobra3.jpg</texture>
+   </livery-4>
+   <livery-5>
+    <texture>Liveries/default/cobra4.jpg</texture>
+   </livery-5>
+   <livery-6>
+    <texture>cLiveries/default/obra5.jpg</texture>
+   </livery-6>
+   <ah1>
+    <gun>true</gun>
+    <missiles>true</missiles>   
+   </ah1>    
+  </model>
+ </sim>
+</PropertyList>

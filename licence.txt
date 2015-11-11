@@ -1,0 +1,43 @@
+Bell AH-1W
+
+License:  Creative Commons CC-BY-NC-SA
+Original license information is shown below.  This model is converted for use in the FlightGear flight simulator.
+
+
+************************************************************************************
+
+
+This is a Freeware release. Please feel free to use in your campaign or missions.  This cannot be used commercially or uploaded to ANY website without consent from Alphasim
+The authors are not responsible for any problems resulting from the use of this product.
+
+
+
+=== THANKS ===
+
+Without the generous contributions of the below listed the making of this aircraft would not have been possible:
+
+Thanks go to:
+
+Alphasim 
+
+FGUK
+
+Ryan Miller
+
+Simon Lister
+
+Heiko Shulz
+
+Layne Bush
+
+Maik Justus
+
+Horacio Contreras
+
+
+== CONTACT ==
+
+FGUK
+
+http://www.fguk.eu
+

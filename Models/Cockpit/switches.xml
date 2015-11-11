@@ -31,15 +31,6 @@
 </axis>
 </animation>
 
-<!-- <model>
-<path>Aircraft/AH-1/Models/Cockpit/Instruments/ai/ai.ac</path>
-<offsets>
-<x-m>-0.35</x-m>
-<y-m>1.8</y-m>
-<z-m>-0.69</z-m>
-</offsets>
-</model> -->
-
 <animation>
 <type>pick</type>
 <object-name>generator2</object-name>

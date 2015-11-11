@@ -113,6 +113,12 @@
 		<name>tacan</name>
 		<number>0</number>
 	</tacan>
+	
+	 
+  <rwr>
+ <display-lighting-intens type="double">0.4</display-lighting-intens>
+ <symbology-lighting-intens type="double">1</symbology-lighting-intens>
+</rwr>
 
   <radar>
     <name>wxradar</name>

@@ -1,39 +1,37 @@
-<?xml version='1.0' encoding='UTF-8'?>
-
+<?xml version="1.0"?>
+<!-- $Id$ -->
 <!--
-Usage: fgfs - -prop:/sim/remote/pilot-callsign="remote pilot callsign" - -aircraft=AH-1-cp
--->
+  MD500 multiplayer passenger view.
 
+  Copyright (C) 2009  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<!--
+  Usage: fgfs - -prop:/sim/remote/pilot-callsign="remote pilot callsign" - -aircraft=Fi-156-passenger
+-->
 <PropertyList>
 
-  <sim>
+ <sim>
 
-    <description>Bell AH-1W Supercobra (Co-pilot)</description>
-    <status>alpha</status>
-    <author>Jack Mermod(3D, FDM, Nasal, Shaders) Simon Lister(3D, Textures, Effects), Layne Bush(Instrumentation), Heiko Shultz(3d, FDM, Nasal, Textures)</author>
-    <license>GPL v2</license>
+  <description>Bell AH-1W Supercobra (Co-pilot)</description>
+  <author>Anders Gidenstam</author>
+  <status>alpha</status>
+  <aircraft-version>$Id$</aircraft-version>
+  
+  <flight-model>null</flight-model>
 
-    <flight-model>null</flight-model>
+  <presets>
+   <onground type="bool">false</onground>
+   <altitude-agl-ft type="double">30.0</altitude-agl-ft>
+  </presets>
 
-    <sound>
-      <path>Aircraft/AH-1/Sounds/AH1-sound.xml</path>
-    </sound>
-
-    <model>
+  <!-- 3d model -->
+   <model>
       <path>Aircraft/AH-1/Models/AH-1W-cp.xml</path>
     </model>	
 
-    <startup>
-	<splash-texture>Aircraft/AH-1/AH-1_Splash.png</splash-texture>
-    </startup>
-
-    <hud>   
-      <enable3d>false</enable3d>
-    </hud>
-
-    <!-- Views -->
-
-    <view n="0">
+  <!-- Views -->
+   <view n="0">
 	<name>Gunner/Co-Pilot View</name>
 	<type>lookfrom</type>
 	<internal archive="y">true</internal>
@@ -42,9 +40,9 @@ Usage: fgfs - -prop:/sim/remote/pilot-callsign="remote pilot callsign" - -aircra
 	<ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
 	<x-offset-m type="double"> 0.00</x-offset-m>
 	<y-offset-m type="double"> 0.12</y-offset-m>
-	<z-offset-m type="double">-8.55</z-offset-m>
+	<z-offset-m type="double">-8.79</z-offset-m>
 	<pitch-offset-deg>-15</pitch-offset-deg>
-	<default-field-of-view-deg type="double">64.0</default-field-of-view-deg>
+	<default-field-of-view-deg type="double">84.0</default-field-of-view-deg>
 	<limits>
 	<enabled type="bool">true</enabled>
 	<left>
@@ -60,40 +58,62 @@ Usage: fgfs - -prop:/sim/remote/pilot-callsign="remote pilot callsign" - -aircra
 	</limits>
 	</config>
     </view>
+  <!-- Views -->
+ 
 
-    <menubar>
-      <default>
 
-        <menu n="10">
-          <label>AH-1 (Co-pilot)</label>
-          <enabled type="bool">true</enabled>
+  <chase-distance-m type="double">-18.0</chase-distance-m>
 
-          <item>
-            <label>Select MP-pilot</label>
-            <binding>
-              <command>nasal</command>
-              <script>
-                dual_control_tools.copilot_dialog.show(aircraft_dual_control.pilot_type);
-              </script>
-            </binding>
-          </item>
-          
-        </menu>
-      </default>
-    </menubar>
+ 	<sound>
+			<path>Aircraft/AH-1/Sounds/AH1-sound.xml</path>
+		</sound>
+ 
 
-  </sim>
+  <menubar>
+   <default>
+    <menu n="100">
+     <label>AH-1Z</label>
+     <item>
+      <label>Select MP-pilot</label>
+      <binding>
+       <command>nasal</command>
+       <script>
+        dual_control_tools.
+          copilot_dialog.show(aircraft_dual_control.pilot_type);
+       </script>
+      </binding>
+     </item>
+    </menu>
+   </default>
+  </menubar>
 
-  <nasal>
-    <dual_control_tools>
-      <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
-    </dual_control_tools>
-    <aircraft_dual_control>
-      <file>Aircraft/AH-1/Nasal/dual-control.nas</file>
-    </aircraft_dual_control>
-    <dual_control>
-      <file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>
-    </dual_control>
-  </nasal>
+ </sim>
+ 
+  <instrumentation>
+    <path>Aircraft/AH-1/Models/Cockpit/Instruments/instrumentation.xml</path>
+  </instrumentation>
+
+ <nasal>
+ 
+   <electrical>
+      <file>Aircraft/AH-1/Nasal/electrical.nas</file>
+    </electrical>
+    <rwr>
+	 <file>Aircraft/Instruments-3d/rwr/rwr.nas</file>
+	</rwr>
+    <radardist>
+	 <file>Aircraft/Instruments-3d/radardist/radardist.nas</file>
+	</radardist>
+ 
+  <dual_control_tools>
+   <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+  </dual_control_tools>
+  <aircraft_dual_control>
+   <file>Aircraft/AH-1/Nasal/ah1-dual-control.nas</file>
+  </aircraft_dual_control>
+  <dual_control>
+   <file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>
+  </dual_control>
+ </nasal>
 
 </PropertyList>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <sim>
+  <model>
+   <livery>
+    <name type="string">USMC HMLA-267 Stingers</name>
+    <texture>Liveries/USMC_HMLA267/C.jpg</texture>
+   </livery>
+   <livery-2>
+    <texture>Liveries/USMC_HMLA2679/1C.jpg</texture>
+   </livery-2>
+   <livery-3>
+    <texture>Liveries/USMC_HMLA267/2C.jpg</texture>
+   </livery-3>
+   <livery-4>
+    <texture>Liveries/USMC_HMLA267/3C.jpg</texture>
+   </livery-4>
+   <livery-5>
+    <texture>Liveries/USMC_HMLA267/4C.jpg</texture>
+   </livery-5>
+   <livery-6>
+    <texture>Liveries/USMC_HMLA267/5C.jpg</texture>
+   </livery-6>
+    <ah1>
+    <gun>true</gun>
+    <missiles>true</missiles>   
+   </ah1>    
+  </model>
+ </sim>
+</PropertyList>

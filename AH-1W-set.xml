@@ -5,9 +5,9 @@
   <sim include="Nasal/views.xml">
 
     <description>Bell AH-1W Supercobra</description>
-    <author>Jack Mermod(3D, FDM, Nasal, Shaders) Simon Lister(3D, Textures, Effects), Layne Bush(Instrumentation), Heiko Shultz(3d, FDM, Nasal, Textures), Skyop(Nasal)</author>
-    <status>Development</status>
-    <license>GPL v2</license>
+    <author>Alphasim ( original 3D ) Jack Mermod(3D, FDM, Nasal, Shaders) Simon Lister(3D, Textures, Effects), Layne Bush(Instrumentation), Heiko Shultz(3d, FDM, Nasal, Textures), Skyop(Nasal)</author>
+    <status>1.5</status>
+    <license>CC-BY-NC-SA</license>
 
     <flight-model>yasim</flight-model>
     <aero>AH-1</aero>
@@ -16,35 +16,41 @@
     <sound>
       <path>Aircraft/AH-1/Sounds/AH1-sound.xml</path>
     </sound>
+	
+	
 
-		<hud>
-			<path n="1">Aircraft/AH-1/Nasal/hud.xml</path>
-			<visibility n="1">true</visibility>
-			<color>
-				<transparent type="bool">true</transparent>
-				<antialiased type="bool">true</antialiased>
-				<brightness type="float">0.85</brightness>
-				<alpha type="float">0.85</alpha>
-			</color>
-			<palette>
-				<color n="0">
-					<red type="float">0.38</red>
-					<green type="float">1.0</green>
-					<blue type="float">0.22</blue>
-				</color>
-				<color n="1">
-					<red type="float">1.0</red>
-					<green type="float">0.0</green>
-					<blue type="float">0.0</blue>
-				</color>
-			</palette>
-			<clipping>
-				<left type="double">-70</left>
-				<right type="double">70</right>
-				<top type="double">21</top>
-				<bottom type="double">-118</bottom>
-			</clipping>
-		</hud>
+			<hud>
+   <path n="1">Aircraft/AH-1/Hud/hud.xml</path>
+   <visibility n="1">true</visibility>
+   
+   <palette>
+    <color n="0">
+     <alpha type="float">0.85</alpha>
+     <antialiased type="bool">true</antialiased>
+     <brightness type="float">0.85</brightness>
+     <transparent type="bool">true</transparent>
+     <red type="float">0.38</red>
+     <green type="float">1.0</green>
+     <blue type="float">0.22</blue>
+    </color>
+    <color n="1">
+     <alpha type="float">0.85</alpha>
+     <antialiased type="bool">true</antialiased>
+     <brightness type="float">0.85</brightness>
+     <transparent type="bool">true</transparent>
+     <red type="float">1.0</red>
+     <green type="float">0.2</green>
+     <blue type="float">0.0</blue>
+    </color>
+   </palette>
+     <clipping>
+            <left type="double">-70</left>
+            <right type="double">65</right>
+            <top type="double">45</top>
+            <bottom type="double">-110</bottom>
+     </clipping>
+   
+  </hud>
 
     <submodels>
 	<serviceable type="bool">1</serviceable>
@@ -60,7 +66,16 @@
         <state type="int">0</state>
         <engine type="float">0.0</engine>
         <rotor-step-deg type="float">-1.0</rotor-step-deg>
-      </AH-1>
+     
+       <particles>
+			<enabled type="bool">true</enabled>
+		</particles>
+
+	 </AH-1>
+	  
+	  	
+	  
+	  
 	<livery>
 	   <file type="string">marines</file>
 	</livery>
@@ -89,6 +104,17 @@
   <generic>
   <float n="0" alias="/sim/model/door-positions/GunnerDoor/position-norm" />
   <float n="1" alias="/sim/model/door-positions/PilotDoor/position-norm" />
+  
+       <!-- Nav lights on -->
+      <int n="0" alias="/controls/switches/nav-lights-switch" />
+      <!-- Beacon on -->
+      <int n="1" alias="/controls/switches/beacon-switch" />
+      <!-- Landing lights on -->
+      <int n="2" alias="/controls/switches/landing-lights-switch" />
+	    <!-- Taxi light on -->
+      <int n="3" alias="/controls/switches/strobe-switch" />
+      <!-- Crashed -->
+      <int n="7" alias="/sim/crashed" />
   </generic>
 </multiplay>
     
@@ -187,9 +213,15 @@
       <line> If you don't make it on the first try, try again!</line>
     </help>
 
-    <menubar include="Dialogs/AH1-menu.xml"/>
+    <menubar include="Dialogs/AH1W-menu.xml"/>
 
   </sim>
+  
+    <environment>
+    <turbulence>
+      <use-cloud-turbulence>true</use-cloud-turbulence>
+    </turbulence>
+  </environment>
   
   <consumables>
 		<fuel>
@@ -231,14 +263,7 @@
   </controls>
 
   <instrumentation>
-    <rwr>
-		<display-lighting-intens type="double">0.4</display-lighting-intens>
-        <symbology-lighting-intens type="double">1</symbology-lighting-intens>
-	</rwr>
-    <gsdi>
-      <serviceable type="bool">true</serviceable>
-      <enabled type="bool">true</enabled>
-    </gsdi>
+    <path>Aircraft/AH-1/Models/Cockpit/Instruments/instrumentation.xml</path>
   </instrumentation>
 
   <input>
@@ -273,6 +298,20 @@
     <radardist>
 	 <file>Aircraft/Instruments-3d/radardist/radardist.nas</file>
 	</radardist>
+	
+	<lights>
+      <file>Aircraft/AH-1/Nasal/Lights.nas</file>
+    </lights>
+	
+	<dual_control_tools>
+   <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+  </dual_control_tools>
+  <aircraft_dual_control>
+   <file>Aircraft/AH-1/Nasal/ah1-dual-control.nas</file>
+  </aircraft_dual_control>
+  <dual_control>
+   <file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>
+  </dual_control>
   </nasal>
 
 </PropertyList>

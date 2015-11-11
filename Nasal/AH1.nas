@@ -930,7 +930,7 @@ var crashed = 0;
 
 
 setlistener("/sim/signals/fdm-initialized", func {
-	gui.menuEnable("autopilot", 0);
+	gui.menuEnable("autopilot", 1);
 	init_rotoranim();
 	vibration.init();
 	engines.init();

@@ -5,22 +5,22 @@
   <model>
    <livery>
     <name type="string">Sky Soldiers</name>
-    <texture>Liveries/skysoldiers.png</texture>
+    <texture>Liveries/skysoldiers/skysoldiers.jpg</texture>
    </livery>
    <livery-2>
-    <texture>Liveries/skysoldiers1.png</texture>
+    <texture>Liveries/skysoldiers/skysoldiers1.jpg</texture>
    </livery-2>
    <livery-3>
-    <texture>Liveries/skysoldiers2.png</texture>
+    <texture>Liveries/skysoldiers/skysoldiers2.jpg</texture>
    </livery-3>
    <livery-4>
-    <texture>Liveries/skysoldiers3.png</texture>
+    <texture>Liveries/skysoldiers/skysoldiers3.jpg</texture>
    </livery-4>
    <livery-5>
-    <texture>Liveries/skysoldiers4.png</texture>
+    <texture>Liveries/common/4.jpg</texture>
    </livery-5>
    <livery-6>
-    <texture>Liveries/skysoldiers5.png</texture>
+    <texture>Liveries/skysoldiers/skysoldiers5.jpg</texture>
    </livery-6>
    <ah1>
     <gun>true</gun>

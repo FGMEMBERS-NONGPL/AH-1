@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <sim>
+  <model>
+   <livery>
+    <name type="string">USMC HMLA-369 Gunfighters</name>
+    <texture>Liveries/USMC_HMLA369/A.jpg</texture>
+   </livery>
+   <livery-2>
+    <texture>Liveries/USMC_HMLA369/1A.jpg</texture>
+   </livery-2>
+   <livery-3>
+    <texture>Liveries/USMC_HMLA369/2A.jpg</texture>
+   </livery-3>
+   <livery-4>
+    <texture>Liveries/USMC_HMLA369/3A.jpg</texture>
+   </livery-4>
+   <livery-5>
+    <texture>Liveries/USMC_HMLA369/4A.jpg</texture>
+   </livery-5>
+   <livery-6>
+    <texture>Liveries/USMC_HMLA369/5A.jpg</texture>
+   </livery-6>
+  <ah1>
+    <gun>true</gun>
+    <missiles>true</missiles>   
+   </ah1>  
+  </model>
+ </sim>
+</PropertyList>
