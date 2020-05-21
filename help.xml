@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+	AT-99 Scorpion Help File
+ 				
+**************************************************************************					
+					
+Copyright (c) 2020 Simon 'bomber' Morley					
+simonbomber64 at googlemail.com					
+					
+This work is licensed under the					
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.					
+To view a copy of this license,					
+visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or					
+send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.					
+					
+Attribution,  You must give appropriate credit, provide a link to the license,					
+and indicate if changes were made. You may do so in any reasonable manner,					
+but not in any way that suggests the licensor endorses you or your use.					
+					
+NonCommercial,  You may not use the material for commercial purposes.					
+					
+ShareAlike,  If you remix, transform, or build upon the material,					
+you must distribute your contributions under the same license as the original.					
+					
+**************************************************************************					
+-->
+
+  <PropertyList> 
+  <help>
+   <title>AT-99 Scorpion</title>
+    <line></line>    
+  	<line>Max take-off weight 16,375lbs</line>
+    <line>12.2m(L) x 8.73m(W) x 3,51m(H)</line>		
+    <line>Four gimbal mounted 50 caliber machine guns with 700 rounds per minute cyclic rate of fire</line> 
+    <line>Two dual 50 caliber machine guns and two triple-barrel 20mm Gatling guns</line> 
+    <line>190 TK-411 WAFAR (Wrap-Around Fin Aerial Rocket) in ten 19-tube rocket launchers</line> 	
+    <line>Eight Hawkeye Hellfire (Helicopter Launched Fire-and-forget)</line> 		
+    <line></line> 	
+	<line>Engine Start</line>
+    <line>1. The s key toggles the starboard and port turbine APU generators</line>		
+    <line>2. The s key also initiated their respective turbine starters</line>
+    <line>   keep pressed for 3 seconds until starter full engaged</line>
+    <line>3. The Scorpion is equiped with twin 1,970 shp, 1469 kW, Magnussen KE-76 turgine generators on a</line>
+	<line>	 common distribution bus feeding an ultracapacitor backup system which can at 100%</line>
+    <line>   sustain rotor rpm for two minutes, in the event of a full engine failure</line>
+	<line></line>	
+	<line>Rotor Start</line>
+    <line>1. The r key toggles the starboard and port rotors on and off</line>
+    <line>3. The Scorpion is equiped with two dual co-axial ducted rotors driven by 2MW counter-rotating annular ceramic motors.</line>
+    <line>   Fixed at the standard dyhedral of eight degree upward angle with a constant speed of 1770rpm delivering</line>	
+	<line>   a sea level top speed of 200kts and max climb rate of 545 meters per minute and 100% UC cruise at 86kts</line>
+	<line></line>	
+	<line>Flight Modes</line>
+    <line>The m key toggles between'Normal' and 'Hover' Flight model</line>
+	<line></line>		
+	<line>Normal Flight Mode</line>
+    <line>1. Adjust rotor pitch using the throttle collective</line>
+    <line>2. Adjust Pitch and Roll using yoke cyclic</line>
+    <line>3. Adjust Yaw using rudder peddles</line>	
+	<line></line>
+	<line>Hover Flight Mode</line>
+    <line>1. Adjust rise and fall using the throttle collective</line>
+    <line>2. Adjust Longtitudinal and Lateral speed using yoke cyclic</line>
+    <line>3. Adjust Yaw using rudder peddles</line>
+    <line>4. Rated too 100kts severe gusts</line>		
+	<line></line>
+	<line>Rotors off Flight Mode</line>
+    <line>Upon detection of a failure of either rotors, rotors off HUD mode is automatically engaged</line>
+    <line>1. Simulataneously the pilot must quickly pull the nose up whilst pushing the throttle collective forward</line>
+	<line>2. Manage the throttle collective to spin the rotors up past their red line building up Landing Flair capability</line>
+	<line>3. VERY gentle control input, land as quick as possible </line>
+	<line></line>	
+
+  </help>
+
+  </PropertyList>

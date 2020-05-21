@@ -1,0 +1,382 @@
+<?xml version="1.0"?>													
+													
+<!--													
+**************************************************************************													
+													
+Copyright (c) 2020 Simon 'bomber' Morley													
+simonbomber64 at googlemail.com													
+													
+This work is licensed under the													
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.													
+To view a copy of this license,													
+visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or													
+send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.													
+													
+Attribution,  You must give appropriate credit, provide a link to the license,													
+and indicate if changes were made. You may do so in any reasonable manner,													
+but not in any way that suggests the licensor endorses you or your use.													
+													
+NonCommercial,  You may not use the material for commercial purposes.													
+													
+ShareAlike,  If you remix, transform, or build upon the material,													
+you must distribute your contributions under the same license as the original.													
+													
+**************************************************************************													
+-->													
+													
+<system name="angle_of_attack">
+
+
+													
+	<channel name="rotation_velocities">												
+													
+	<pure_gain name="T4T/velocities/h-tail/p_rotational-fps">												
+		<input>velocities/p-rad_sec</input>											
+		<gain>2.95</gain>							<!-- Y armature -->				
+	</pure_gain>												
+	<pure_gain name="T4T/velocities/h-tail/q_rotational-fps">												
+		<input>velocities/q-rad_sec</input>											
+		<gain>25.26</gain>							<!-- X armature -->				
+	</pure_gain>												
+	<pure_gain name="T4T/velocities/h-tail/r_rotational-fps">												
+		<input>velocities/r-rad_sec</input>											
+		<gain>25.26</gain>							<!-- X armature -->				
+	</pure_gain>												
+													
+	<pure_gain name="T4T/velocities/v-tail/p_rotational-fps">												
+		<input>velocities/p-rad_sec</input>											
+		<gain>5.91</gain>							<!-- Y armature -->				
+	</pure_gain>												
+	<pure_gain name="T4T/velocities/v-tail/q_rotational-fps">												
+		<input>velocities/q-rad_sec</input>											
+		<gain>25.92</gain>							<!-- X armature -->				
+	</pure_gain>												
+	<pure_gain name="T4T/velocities/v-tail/r_rotational-fps">												
+		<input>velocities/r-rad_sec</input>											
+		<gain>25.92</gain>							<!-- X armature -->				
+	</pure_gain>
+	
+	<switch name="T4T/velocities/fuselage/q_armature-ft">													
+		<default value="4.61"/>	<!-- rotating around the rotor  -->											
+		<test value="-4.95">	<!-- rotating around the undercarriage -->										
+			gear/wow GT 0										
+		</test>											
+		<output>T4T/aero/directionV</output>											
+	</switch>	
+	
+	<pure_gain name="T4T/velocities/fuselage/q_rotational-fps">												
+		<input>velocities/q-rad_sec</input>											
+		<gain>T4T/velocities/fuselage/q_armature-ft</gain>		<!-- Z armature -->				
+	</pure_gain>
+	<pure_gain name="T4T/velocities/fuselage/p_rotational-fps">												
+		<input>velocities/p-rad_sec</input>											
+		<gain>T4T/velocities/fuselage/q_armature-ft</gain>		<!-- Z armature -->				
+	</pure_gain>	
+													
+</channel>													
+													
+	<channel name="true velocities">													
+																																						
+	<!-- #### h-tail #### -->												
+
+													
+	<summer name="T4T/velocities/h-tail/v-aero-fps">												
+		<input>velocities/v-aero-fps</input>											
+		<input>T4T/velocities/h-tail/r_rotational-fps</input>											
+	</summer>
+
+	<summer name="T4T/velocities/h-tail_left/w-aero-fps">													
+		<input>velocities/w-aero-fps</input>											
+		<input>-T4T/velocities/h-tail/p_rotational-fps</input>
+		<input>T4T/velocities/h-tail/q_rotational-fps</input>			
+	</summer>
+
+	<summer name="T4T/velocities/h-tail_right/w-aero-fps">													
+		<input>velocities/w-aero-fps</input>											
+		<input>T4T/velocities/h-tail/p_rotational-fps</input>
+		<input>T4T/velocities/h-tail/q_rotational-fps</input>			
+	</summer>	
+												
+	<fcs_function name="T4T/velocities/h-tail_left/true-fps">												
+		<function>											
+			<pow>										
+				<sum>									
+					<pow>								
+						<property>velocities/u-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+					<pow>								
+						<property>T4T/velocities/h-tail/v-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+					<pow>								
+						<property>T4T/velocities/h-tail_left/w-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+				</sum>									
+				<value> 0.5 </value>									
+			</pow>										
+		</function>											
+	</fcs_function>
+
+	<fcs_function name="T4T/velocities/h-tail_right/true-fps">												
+		<function>											
+			<pow>										
+				<sum>									
+					<pow>								
+						<property>velocities/u-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+					<pow>								
+						<property>T4T/velocities/h-tail/v-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+					<pow>								
+						<property>T4T/velocities/h-tail_right/w-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+				</sum>									
+				<value> 0.5 </value>									
+			</pow>										
+		</function>											
+	</fcs_function>	
+											
+													
+	<!-- #### v-tail #### -->
+
+	<summer name="T4T/velocities/v-tail/v-aero-fps">												
+		<input>velocities/v-aero-fps</input>											
+		<input>-T4T/velocities/v-tail/r_rotational-fps</input>											
+	</summer>													
+																										
+	<summer name="T4T/velocities/v-tail_left/w-aero-fps">												
+		<input>velocities/w-aero-fps</input>
+		<input>-T4T/velocities/v-tail/p_rotational-fps</input>		
+		<input>T4T/velocities/v-tail/q_rotational-fps</input>											
+	</summer>
+
+	<summer name="T4T/velocities/v-tail_right/w-aero-fps">												
+		<input>velocities/w-aero-fps</input>
+		<input>T4T/velocities/v-tail/p_rotational-fps</input>		
+		<input>T4T/velocities/v-tail/q_rotational-fps</input>											
+	</summer>		
+													
+	<fcs_function name="T4T/velocities/v-tail_left/true-fps">												
+		<function>											
+			<pow>										
+				<sum>									
+					<pow>								
+						<property>velocities/u-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+					<pow>								
+						<property>T4T/velocities/v-tail/v-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+					<pow>								
+						<property>T4T/velocities/v-tail_left/w-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+				</sum>									
+				<value> 0.5 </value>									
+			</pow>										
+		</function>											
+	</fcs_function>
+	
+	<fcs_function name="T4T/velocities/v-tail_right/true-fps">												
+		<function>											
+			<pow>										
+				<sum>									
+					<pow>								
+						<property>velocities/u-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+					<pow>								
+						<property>T4T/velocities/v-tail/v-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+					<pow>								
+						<property>T4T/velocities/v-tail_right/w-aero-fps</property>							
+						<value> 2 </value>							
+					</pow>								
+				</sum>									
+				<value> 0.5 </value>									
+			</pow>										
+		</function>											
+	</fcs_function>
+	
+	<!-- #### fuselage #### -->
+	
+	<summer name="T4T/velocities/fuselage/u-aero-fps">												
+		<input>velocities/u-aero-fps</input>											
+		<input>T4T/velocities/fuselage/q_rotational-fps</input>											
+	</summer>
+	
+	<summer name="T4T/velocities/fuselage/v-aero-fps">												
+		<input>velocities/v-aero-fps</input>											
+		<input>T4T/velocities/fuselage/p_rotational-fps</input>											
+	</summer>	
+														
+	</channel>													
+													
+	<channel name="beta">													
+												
+	<!-- #### h-tail #### -->												
+													
+	<fcs_function name="T4T/aero/h-tail_left/beta-deg">												
+		<function>											
+			<todegrees>										
+				<atan2 name="T4T/aero/h-tail_left/beta-rad">									
+					<property>T4T/velocities/h-tail/v-aero-fps</property>								
+					<sum>							
+						<abs><property>velocities/u-aero-fps</property></abs>						
+						<property>T4T/velocities/h-tail_left/w-aero-fps</property>						
+					</sum>	
+				</atan2>									
+			</todegrees>										
+		</function>											
+	</fcs_function>												
+	<fcs_function name="T4T/aero/h-tail_right/beta-deg">												
+		<function>											
+			<todegrees>										
+				<atan2 name="T4T/aero/h-tail_right/beta-rad">									
+					<property>T4T/velocities/h-tail/v-aero-fps</property>								
+					<sum>							
+						<abs><property>velocities/u-aero-fps</property></abs>						
+						<property>T4T/velocities/h-tail_right/w-aero-fps</property>						
+					</sum>	
+				</atan2>									
+			</todegrees>										
+		</function>											
+	</fcs_function>												
+													
+	<!-- #### v-tail #### -->
+
+	<fcs_function name="T4T/aero/v-tail_left/beta-deg">												
+		<function>											
+			<todegrees>																		
+				<atan2 name="T4T/aero/v-tail_left/beta-rad">								
+					<property>T4T/velocities/v-tail/v-aero-fps</property>												
+					<sum>							
+						<abs><property>velocities/u-aero-fps</property></abs>						
+						<property>T4T/velocities/v-tail_left/w-aero-fps</property>						
+					</sum>													
+				</atan2>																
+			</todegrees>										
+		</function>											
+	</fcs_function>												
+
+	<fcs_function name="T4T/aero/v-tail_right/beta-deg">												
+		<function>											
+			<todegrees>																		
+				<atan2 name="T4T/aero/v-tail_right/beta-rad">								
+					<property>T4T/velocities/v-tail/v-aero-fps</property>							
+					<sum>							
+						<abs><property>velocities/u-aero-fps</property></abs>						
+						<property>T4T/velocities/v-tail_left/w-aero-fps</property>						
+					</sum>	
+				</atan2>																
+			</todegrees>										
+		</function>											
+	</fcs_function>
+
+	<!-- #### fuselage #### -->
+	
+	<fcs_function name="T4T/aero/fuselage/alpha-deg">												
+		<function>											
+			<todegrees>																		
+				<atan2 name="T4T/aero/fuselage/alpha-rad">								
+					<property>velocities/w-aero-fps</property>																	
+					<property>T4T/velocities/fuselage/u-aero-fps</property>												
+				</atan2>																
+			</todegrees>										
+		</function>											
+	</fcs_function>		
+
+	<fcs_function name="T4T/aero/fuselage/beta-deg">												
+		<function>											
+			<todegrees>																		
+				<atan2 name="T4T/aero/fuselage/beta-rad">								
+					<property>T4T/velocities/fuselage/v-aero-fps</property>																	
+					<property>T4T/velocities/fuselage/u-aero-fps</property>												
+				</atan2>																
+			</todegrees>										
+		</function>											
+	</fcs_function>		
+													
+	</channel>													
+
+	<property type="double" value="0">T4T/aero/h-tail/rigging-deg</property>
+	
+	<channel name="alpha">													
+													
+
+	<!-- #### left h-tail #### -->												
+												
+	<fcs_function name="T4T/aero/h-tail_left/alpha_true-deg">												
+		<function>
+			<sum>
+				<property>T4T/aero/h-tail/rigging-deg</property>	
+				<todegrees name="T4T/aero/h-tail_left/alpha-deg">									
+					<atan2 name="T4T/aero/h-tail_left/alpha-rad">						
+						<property>T4T/velocities/h-tail_left/w-aero-fps</property>							
+						<sum>							
+							<abs><property>velocities/u-aero-fps</property></abs>						
+							<abs><property>T4T/velocities/h-tail/v-aero-fps</property></abs>						
+						</sum>							
+					</atan2>							
+				</todegrees>
+			</sum>
+		</function>											
+	</fcs_function>												
+													
+	<fcs_function name="T4T/aero/h-tail_right/alpha_true-deg">												
+		<function>
+			<sum>
+				<property>T4T/aero/h-tail/rigging-deg</property>		
+				<todegrees name="T4T/aero/h-tail_right/alpha-deg">
+					<atan2 name="T4T/aero/h-tail_right/alpha-rad">						
+						<property>T4T/velocities/h-tail_right/w-aero-fps</property>							
+						<sum>							
+							<abs><property>velocities/u-aero-fps</property></abs>						
+							<abs><property>T4T/velocities/h-tail/v-aero-fps</property></abs>						
+						</sum>							
+					</atan2>
+				</todegrees>
+			</sum>				
+		</function>											
+	</fcs_function>											
+													
+	<!-- #### v-tail #### -->												
+													
+	<fcs_function name="T4T/aero/v-tail_left/alpha-deg">												
+		<function>											
+			<todegrees>										
+				<atan2>									
+					<property>T4T/velocities/v-tail/v-aero-fps</property>								
+					<sum>							
+						<abs><property>velocities/u-aero-fps</property></abs>						
+						<abs><property>T4T/velocities/v-tail_right/w-aero-fps</property></abs>						
+					</sum>													
+				</atan2>									
+			</todegrees>										
+		</function>											
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/v-tail_right/alpha-deg">												
+		<function>											
+			<todegrees>										
+				<atan2>									
+					<property>T4T/velocities/v-tail/v-aero-fps</property>								
+					<sum>							
+						<abs><property>velocities/u-aero-fps</property></abs>						
+						<abs><property>T4T/velocities/v-tail_right/w-aero-fps</property></abs>						
+					</sum>															
+				</atan2>									
+			</todegrees>										
+		</function>											
+	</fcs_function>	
+	
+	</channel>													
+													
+</system>													

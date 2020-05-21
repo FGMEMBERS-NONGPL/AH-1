@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+
+<!--
+************************************************************************
+T4T-AT-99 Scorpion simulation config. This files ties together all the components
+used by FGFS to represent the AT-99 Scorpion. Components include the flight data 
+model, instrument panel, and external 3D model.
+
+Copyright (c) 2020 Simon 'bomber' Morley																												
+simonbomber64 at googlemail.com
+************************************************************************
+-->
+
+<PropertyList>
+	<sim include="help.xml">
+		<description>AT-99 Scorpion from Avatar (T4T JSBSim)</description>
+		<author>Simon'bomber'Morley(FDM)</author>
+		<status>early T4T Trial</status>
+		<rating>
+			<FDM type="int">0</FDM>
+			<systems type="int">0</systems>
+			<cockpit type="int">0</cockpit>
+			<model type="int">0</model>
+		</rating>
+    		<tags>
+      			<tag>low-wing</tag>
+    		</tags>
+     
+		<flight-model>jsb</flight-model>
+		<aero>Flight-Damage-Model</aero>
+		
+		<startup>
+			<splash-texture>Aircraft/AH-1/Scorpion_Splash.png</splash-texture>
+		</startup>
+		
+		<sound>
+			<audible>true</audible>
+			<path>Aircraft/AH-1/Sounds/Scorpion-sound.xml</path>
+		</sound>
+
+		<hud>
+			<path n="1">Aircraft/AH-1/Hud/Scorpion-hud.xml</path>
+			<visibility n="1">true</visibility>
+
+			<palette>
+				<color n="0">
+					<alpha type="float">0.85</alpha>
+					<antialiased type="bool">true</antialiased>
+					<brightness type="float">0.85</brightness>
+					<transparent type="bool">true</transparent>
+					<red type="float">0.38</red>
+					<green type="float">1.0</green>
+					<blue type="float">0.22</blue>
+				</color>
+				<color n="1">
+					<alpha type="float">0.85</alpha>
+					<antialiased type="bool">true</antialiased>
+					<brightness type="float">0.85</brightness>
+					<transparent type="bool">true</transparent>
+					<red type="float">1.0</red>
+					<green type="float">0.2</green>
+					<blue type="float">0.0</blue>
+				</color>
+			</palette>
+			<clipping>
+				<left type="double">-70</left>
+				<right type="double">65</right>
+				<top type="double">45</top>
+				<bottom type="double">-110</bottom>
+			</clipping>
+
+		</hud>
+		
+		<submodels>
+			<serviceable type="bool">1</serviceable>
+			<path>Aircraft/AH-1/Models/Stores/submodels.xml</path>
+		</submodels>
+
+		<virtual-cockpit archive="y">true</virtual-cockpit>
+		<allow-toggle-cockpit archive="y">true</allow-toggle-cockpit>		
+		
+		<model>
+			<path archive="y">Aircraft/AH-1/Models/AH-1W-T4T.xml</path>    
+			<AH-1>
+				<state type="int">0</state>
+				<engine type="float">0.0</engine>
+				<rotor-step-deg type="float">-1.0</rotor-step-deg>		
+				<particles>
+				<enabled type="bool">true</enabled>
+				</particles>
+			</AH-1>
+			<livery>
+				<file type="string">marines</file>
+			</livery>
+			<livery-2>
+				<file type="string">marines</file>
+			</livery-2>
+			<livery-3>
+				<file type="string">marines</file>
+			</livery-3>
+			<livery-4>
+				<file type="string">marines</file>
+			</livery-4>
+			<livery-5>
+				<file type="string">marines</file>
+			</livery-5>
+			<livery-6>
+				<file type="string">marines</file>
+			</livery-6>
+			<ah1>
+				<gun>true</gun>
+				<missiles>true</missiles>   
+			</ah1>  
+		</model>
+		
+		<rendering>
+			<camera-group>
+				<znear type="double">0.1</znear>
+			</camera-group>
+			<refl-correction type="float">-0.25</refl-correction>
+			<ambient-correction type="float">0.2</ambient-correction>
+		</rendering>
+
+		<view n="0">
+			<internal archive="y">true</internal>
+			<config>
+				<x-offset-m archive="y" type="double">0.0</x-offset-m>
+				<y-offset-m archive="y" type="double">0.6</y-offset-m>
+				<z-offset-m archive="y" type="double">-1.45</z-offset-m>
+				<pitch-offset-deg>-12.5</pitch-offset-deg>
+				<default-field-of-view-deg>85</default-field-of-view-deg>
+				<limits>
+					<enabled type="bool">true</enabled>
+					<left>
+						<heading-max-deg type="double">145</heading-max-deg>
+						<x-offset-max-m type="double">0.175</x-offset-max-m>
+						<x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+					</left>
+					<right>
+						<heading-max-deg type="double">145</heading-max-deg>
+						<x-offset-max-m type="double">0.175</x-offset-max-m>
+						<x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+					</right>
+				</limits>
+			</config>
+		</view>		
+	</sim>
+				
+	<input include="keyboard-scorpion.xml">			
+		<joysticks>	
+			<js>		
+				<axis n="2">
+					<desc>Throttle</desc>
+					<binding>
+						<command>property-scale</command>
+						<property>fdm/jsbsim/fcs/thrust-pos-cmd</property>
+					</binding>
+				</axis>		
+			</js>
+		</joysticks>		
+	</input>
+	
+</PropertyList>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+
+	Annular motor
+	
+	2000kW
+
+-->
+
+
+<electric_engine name="Annular motor">
+    <power> 2000000 </power> 
+</electric_engine>
