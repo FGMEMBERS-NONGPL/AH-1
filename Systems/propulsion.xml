@@ -225,7 +225,7 @@ you must distribute your contributions under the same license as the original.
 		<pid name="propulsion/engine[2]/rpm-pid">
 			<input>-propulsion/engine[2]/rpm-pid/error-rpm </input>
 			<kp>0.0001</kp>
-			<ki></ki>
+			<ki>0.0</ki>
 			<kd>0.0001</kd>
 			<output>propulsion/engine[2]/rpm-pid/output</output>
 		</pid>
@@ -254,7 +254,7 @@ you must distribute your contributions under the same license as the original.
 		<pid name="propulsion/engine[4]/rpm-pid">
 			<input>-propulsion/engine[4]/rpm-pid/error-rpm</input>
 			<kp>0.0001</kp>
-			<ki></ki>
+			<ki>0.0</ki>
 			<kd>0.0001</kd>
 			<output>propulsion/engine[4]/rpm-pid/output</output>
 		</pid>
