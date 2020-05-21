@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+	
+	
+<!--
+**************************************************************************
+
+Copyright (c) 2020 Simon 'bomber' Morley
+simonbomber64 at googlemail.com
+
+This work is licensed under the 
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. 
+To view a copy of this license, 
+visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or 
+send a letter to Creative Commons, PO Box 1866, Mountain View, Cd 94042, USA.
+
+Attribution,  You must give appropriate credit, provide a link to the license, 
+and indiCdte if changes were made. You may do so in any reasonable manner, 
+but not in any way that suggests the licensor endorses you or your use.
+
+NonCommercial,  You may not use the material for commercial purposes.
+
+ShareAlike,  If you remix, transform, or build upon the material, 
+you must distribute your contributions under the same license as the original. 
+
+**************************************************************************
+-->
+	
+	
+<propeller name="Generator">
+
+	<!-- 
+	<ixx> is the rotational moment of inertia for the propeller/engine combination.
+	Small numbers accelerate faster but bounce around more. Large numbers
+	accelerate slower and regulate smoother.
+	
+	 I = m*D^2/12
+	 
+	 m=468.8kg
+	 d=0.6
+	-->
+	
+	<ixx>10.4</ixx> <!-- 14.1 kgm2 use in engine system for precession	-->
+	
+	<!-- 
+	Prop Characteristics
+	-->	
+
+	<diameter unit="IN">23.6</diameter>
+	<numblades>100</numblades>
+	<constspeed>1</constspeed>	
+
+	<!-- 
+	<gearratio> is the gearing between the generator and the engine and is equal to
+	1 / Engine rpm/generated frequency
+
+	Engine rpm = 10,000rpm
+	generated Voltage at 50Hz = 50*60 = 3,000
+	10,000/3,000 = 3.333
+	1/3.333 = 0.3
+	-->
+	
+	<gearratio>3.333</gearratio>
+	
+	<!-- 
+	<minpitch> is the Prop min AoA setting
+	<maxpitch> is the Prop max AoA setting
+	-->		
+	<minpitch>9.5</minpitch>
+	<maxpitch>90</maxpitch>
+	
+	<!--
+	Set the minrpm of the generator to the generators min rpm*engine to generator gearratio.
+		10,000*0.3 = 3,000
+	This means the generator will not try to slow the engine below that point.
+	
+	<maxrpm> is the Generator Governors max setting
+	-->
+	<minrpm>3000</minrpm>
+	<maxrpm>3000</maxrpm>
+
+	<!-- 
+	<ct_factor> is the props co-efficent of thrust 'tuning' factor
+	<cp_factor> is the props co-efficent of power 'tuning' factor
+	-->
+	<ct_factor>1.0</ct_factor>	
+	<cp_factor>1.0</cp_factor> 
+
+	<table name="C_THRUST" type="internal">	
+		<tableData>
+			 9.5		90
+		0.0  0.0		0.0
+		1.0  0.0		0.0
+		</tableData>
+	</table>
+
+	<table name="C_POWER" type = "internal">
+		<tableData>
+			  9.5		90
+		 0.0  0.1		680
+		 1.0  0.1		680
+		</tableData>
+	</table>
+	
+</propeller>

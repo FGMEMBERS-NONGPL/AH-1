@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+
+<!--
+**************************************************************************
+
+Copyright (c) 2020 Simon 'bomber' Morley
+simonbomber64 at googlemail.com
+
+This work is licensed under the 
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. 
+To view a copy of this license, 
+visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or 
+send a letter to Creative Commons, PO Box 1866, Mountain View, Cd 94042, USA.
+
+Attribution,  You must give appropriate credit, provide a link to the license, 
+and indiCdte if changes were made. You may do so in any reasonable manner, 
+but not in any way that suggests the licensor endorses you or your use.
+
+NonCommercial,  You may not use the material for commercial purposes.
+
+ShareAlike,  If you remix, transform, or build upon the material, 
+you must distribute your contributions under the same license as the original. 
+
+**************************************************************************
+-->
+
+
+<system name="Engine">
+
+<property type="bool" value="0">T4T/AGP/mode</property>
+<property type="double" value="1">T4T/one</property>
+<property type="bool" value="0">propulsion/rotors-on</property>
+<property type="bool" value="0">propulsion/governor_port-on</property>
+<property type="bool" value="0">propulsion/governor_starboard-on</property>
+<property type="double" value="0">propulsion/set_rotor-rpm</property>
+<property type="double" value="10000">propulsion/set_turbine-rpm</property>
+<property type="double" value="0">propulsion/power-demand-kW</property>
+
+    <channel name="Magnussen_KE-76 Governor" execute="propulsion/governor_port-on">
+
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>propulsion/engine[0]/power-hp</independentVar>
+				<tableData>
+					92		0
+					1970	1469
+				</tableData>
+			</table>
+			<output>propulsion/engine[0]/power-generated-kW</output>
+		</scheduled_gain>
+		<summer>
+			<input>propulsion/engine[0]/power-generated-kW</input>
+			<input>-propulsion/power-demand-kW</input>
+			<output>propulsion/engine[0]/governor/error</output>
+		</summer>		
+		<pid>
+			<input>-propulsion/engine[0]/governor/error</input>
+			<kp>0.01</kp>
+			<ki>0.01</ki>
+			<kd>0.005</kd>
+			<output>propulsion/engine[0]/governor/output</output>
+		</pid>
+		<summer>
+			<input>/controls/engines/engine[0]/throttle</input>
+			<input>propulsion/engine[0]/governor/output</input>
+			<output>/controls/engines/engine[0]/throttle</output>
+		</summer>
+
+	</channel>
+	
+    <channel name="Magnussen_KE-76 Governor" execute="propulsion/governor_starboard-on">
+
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>propulsion/engine[1]/power-hp</independentVar>
+				<tableData>
+					92		0
+					1970	1469
+				</tableData>
+			</table>
+			<output>propulsion/engine[1]/power-generated-kW</output>
+		</scheduled_gain>
+		<summer>
+			<input>propulsion/engine[1]/power-generated-kW</input>
+			<input>-propulsion/power-demand-kW</input>
+			<output>propulsion/engine[1]/governor/error</output>
+		</summer>		
+		<pid>
+			<input>-propulsion/engine[1]/governor/error</input>
+			<kp>0.01</kp>
+			<ki>0.01</ki>
+			<kd>0.005</kd>
+			<output>propulsion/engine[1]/governor/output</output>
+		</pid>
+		<summer>
+			<input>/controls/engines/engine[1]/throttle</input>
+			<input>propulsion/engine[1]/governor/output</input>
+			<output>/controls/engines/engine[1]/throttle</output>
+		</summer>
+
+	</channel>
+
+    <channel name="Capacitor Bank">
+
+	<!-- Charge -->
+
+		<summer>
+			<input>propulsion/engine[0]/power-generated-kW</input>
+			<input>propulsion/engine[1]/power-generated-kW</input>		
+			<output>propulsion/power-generated-kW</output>
+		</summer>
+
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>propulsion/power-generated-kW</independentVar>
+				<tableData>
+					0			0
+					2938		0.00833
+				</tableData>
+			</table>
+			<output>propulsion/tank[5]/charging-rate-pps</output>
+		</scheduled_gain>
+	
+	<!-- Drain -->	
+	
+		<summer>
+			<input>propulsion/engine[2]/rotor-power-kW</input>
+			<input>propulsion/engine[3]/rotor-power-kW</input>
+			<input>propulsion/engine[4]/rotor-power-kW</input>
+			<input>propulsion/engine[5]/rotor-power-kW</input>
+			<output>propulsion/rotor-power-kW</output>
+		</summer>
+		
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>propulsion/rotor-power-kW</independentVar>
+				<tableData>
+					0			0
+					8640		-0.0244
+				</tableData>
+			</table>
+			<output>propulsion/tank[5]/draining-rate-pps</output>
+		</scheduled_gain>
+		
+		<summer>
+			<input>propulsion/tank[5]/charging-rate-pps</input>
+			<input>propulsion/tank[5]/draining-rate-pps</input>
+			<output>propulsion/tank[5]/external-flow-rate-pps</output>
+		</summer>
+
+		<switch>
+			<default value="0"/>
+			<test value="1">
+				propulsion/engine[0]/engine-rpm GT 1000
+			</test>
+			<output>propulsion/governor_port-on</output>
+		</switch>
+
+		<switch>
+			<default value="0"/>
+			<test value="1">
+				propulsion/engine[1]/engine-rpm GT 1000
+			</test>
+			<output>propulsion/governor_starboard-on</output>
+		</switch>
+
+		<pure_gain>
+			<input>propulsion/rotor-power-kW</input>		
+			<gain>0.5</gain>
+			<output>propulsion/power-shared-kW</output>
+		</pure_gain>
+ 		
+		<switch>
+			<default value="propulsion/rotor-power-kW"/>
+			<test logic="AND" value="propulsion/power-shared-kW">
+				propulsion/engine[0]/set-running GT 0
+				propulsion/engine[1]/set-running GT 0				
+			</test>
+			<output>propulsion/power-demand-kW</output>
+		</switch>		
+
+	</channel>
+
+    <channel name="Constant Speed Rotors">
+	
+		<switch>
+			<default value="0"/>
+			<test value="propulsion/rotors-on">
+				propulsion/tank[5]/pct-full GT 0
+			</test>
+			<output>propulsion/rotors-on</output>
+		</switch>
+
+		<kinematic name="rotor start stop">
+			<input>propulsion/rotors-on</input>
+			<traverse>
+				<setting>
+					<position>0</position>
+					<time>0</time>
+				</setting>
+				<setting>
+					<position>1</position>
+					<time>5</time>
+				</setting>
+			</traverse>
+			<output>propulsion/set_rotor-rpm</output>
+		</kinematic>
+		<pure_gain>
+			<input>propulsion/set_rotor-rpm</input>
+			<gain>1770</gain>
+			<output>propulsion/rotor-rpm</output>
+		</pure_gain>
+
+<!--	Port Rotor	-->
+		
+		<summer name="propulsion/engine[2]/rpm-pid/error-rpm">
+			<input>propulsion/engine[2]/engine-rpm</input>
+			<input>-propulsion/rotor-rpm</input>
+		</summer>
+		
+		<pid name="propulsion/engine[2]/rpm-pid">
+			<input>-propulsion/engine[2]/rpm-pid/error-rpm </input>
+			<kp>0.0001</kp>
+			<ki></ki>
+			<kd>0.0001</kd>
+			<output>propulsion/engine[2]/rpm-pid/output</output>
+		</pid>
+		
+		<summer>
+			<input>/controls/engines/engine[2]/throttle</input>
+			<input>propulsion/engine[2]/rpm-pid</input>
+			<output>/controls/engines/engine[2]/throttle</output>
+			<output>/controls/engines/engine[3]/throttle</output>
+		</summer>
+		
+		<pure_gain>
+			<input>/controls/engines/engine[3]/throttle</input>
+			<gain>2160</gain> <!-- rated power of motor * efficiency(92%) or 1.08 -->
+			<output>propulsion/engine[2]/rotor-power-kW</output>
+			<output>propulsion/engine[3]/rotor-power-kW</output>
+		</pure_gain>
+
+<!--	Starboard Rotor	-->
+		
+		<summer name="propulsion/engine[4]/rpm-pid/error-rpm">
+			<input>propulsion/engine[4]/engine-rpm</input>
+			<input>-propulsion/rotor-rpm</input>
+		</summer>
+		
+		<pid name="propulsion/engine[4]/rpm-pid">
+			<input>-propulsion/engine[4]/rpm-pid/error-rpm</input>
+			<kp>0.0001</kp>
+			<ki></ki>
+			<kd>0.0001</kd>
+			<output>propulsion/engine[4]/rpm-pid/output</output>
+		</pid>
+		
+		<summer>
+			<input>/controls/engines/engine[4]/throttle</input>
+			<input>propulsion/engine[4]/rpm-pid</input>
+			<output>/controls/engines/engine[4]/throttle</output>
+			<output>/controls/engines/engine[5]/throttle</output>
+		</summer>
+
+		<pure_gain>
+			<input>/controls/engines/engine[5]/throttle</input>		
+			<gain>2160</gain> <!-- rated power of motor * efficiency(92%) or 1.08 -->
+			<output>propulsion/engine[4]/rotor-power-kW</output>
+			<output>propulsion/engine[5]/rotor-power-kW</output>
+		</pure_gain>
+
+	</channel>
+
+</system>

@@ -1,0 +1,762 @@
+<?xml version="1.0"?>
+
+<!--
+**************************************************************************
+
+Copyright (c) 2020 Simon 'bomber' Morley
+simonbomber64 at googlemail.com
+
+This work is licensed under the 
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. 
+To view a copy of this license, 
+visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or 
+send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+Attribution,  You must give appropriate credit, provide a link to the license, 
+and indicate if changes were made. You may do so in any reasonable manner, 
+but not in any way that suggests the licensor endorses you or your use.
+
+NonCommercial,  You may not use the material for commercial purposes.
+
+ShareAlike,  If you remix, transform, or build upon the material, 
+you must distribute your contributions under the same license as the original. 
+
+**************************************************************************
+Vectors along the axis
+x = u
+y = v
+z = w
+Rotation around the axis
+x = p
+y = q
+z = r
+Moments around the axis
+x = l
+y = m
+z = n
+-->
+
+<system name="flight_control">
+
+<property type="double" value="1">T4T/one</property>
+<property type="double" value="0">fcs/thrust-pos-cmd</property>
+	
+<channel name="Flight Mode">
+
+		<switch>												
+			<default value="0"/>											
+			<test logic="AND" value="1">											
+				propulsion/rotors-on eq 0
+				gear/wow eq 0				
+			</test>											
+			<output>T4T/AGP/mode-0</output>									
+		</switch>
+
+		<switch>												
+			<default value="0"/>											
+			<test logic="OR" value="1">
+				<test>	
+					gear/wow eq 1
+					T4T/AGP/mode eq 0
+				</test>
+				<test logic="AND">
+					T4T/AGP/mode-0 eq 0
+					T4T/AGP/mode-2 eq 0										
+				</test>									
+			</test>											
+			<output>T4T/AGP/mode-1</output>									
+		</switch>
+		
+		<switch>												
+			<default value="0"/>											
+			<test logic="AND" value="1">											
+				T4T/AGP/mode-0 eq 0
+				T4T/AGP/mode eq 1				
+				gear/wow eq 0
+			</test>											
+			<output>T4T/AGP/mode-2</output>									
+		</switch>
+		<switch>												
+			<default value="1"/>											
+			<test value="0">											
+				T4T/AGP/mode-2 eq 1
+			</test>											
+			<output>/sim/hud/enable3d[1]</output>									
+		</switch>
+
+		<switch>												
+			<default value="0"/>											
+			<test logic="AND" value="1">	
+				gear/wow eq 0
+				propulsion/engine[0]/set-running eq 0
+				propulsion/engine[1]/set-running eq 0
+			</test>											
+			<output>/sim/hud/current-color</output>									
+		</switch>		
+
+</channel>
+	
+<channel name="Rotors off Landing" execute="T4T/AGP/mode-0">
+
+	<!-- Collective Adjust -->
+
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/thrust-pos-cmd</independentVar>
+				<tableData>
+					-0.6	0
+					0.6		31.2
+					0.95	38
+				</tableData>
+			</table>
+			<output>propulsion/collective/blade-angle-cmd</output>
+		</scheduled_gain>
+
+	<!-- Pitch Adjust -->
+			
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/elevator-cmd-norm</independentVar>
+				<tableData>
+					-0.4 	2.14
+					0.0		1.57
+					0.4		1.0
+				</tableData>
+			</table>
+			<output>propulsion/cyclic_q-pos-cmd</output>
+		</scheduled_gain>
+		
+	<!-- Elevator Adjust -->
+	
+		<summer>
+			<input>fcs/elevator-cmd-norm</input>
+			<input></input>
+			<output>fcs/elevator-pos-norm</output>
+		</summer>
+		
+		<scheduled_gain>
+			<input>T4T/one</input>		
+			<table>
+				<independentVar>fcs/elevator-cmd-norm</independentVar>
+				<tableData>
+					-1 -13
+					0	0
+					1	13
+				</tableData>
+			</table>
+			<output>T4T/aero/h-tail/rigging-deg1</output>			
+		</scheduled_gain>
+		<pure_gain>
+			<input>-T4T/aero/directionU</input>		
+			<gain>T4T/aero/h-tail_left/alpha-deg</gain>
+			<output>T4T/aero/h-tail/rigging-deg2</output>
+		</pure_gain>
+		<switch>												
+			<default value="T4T/aero/h-tail/rigging-deg2"/>											
+			<test value="T4T/aero/h-tail/rigging-deg1">											
+				T4T/velocities/h-tail_left/true-fps GT 100										
+			</test>											
+			<output>T4T/aero/h-tail/rigging-deg</output>											
+		</switch>		
+
+	<!-- Roll Adjust -->
+	
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/aileron-cmd-norm</independentVar>
+				<tableData>
+					-1.0	-30
+					0.0		0
+					1.0		30
+				</tableData>
+			</table>
+			<output>propulsion/cyclic_p-pos-cmd</output>
+		</scheduled_gain>
+		
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>propulsion/cyclic_p-pos-cmd</independentVar>
+				<tableData>
+					-30		0.5
+					0		0
+					30		-0.5
+				</tableData>
+			</table>
+			<output>propulsion/cyclic_pr-pos-cmd</output>
+		</scheduled_gain>		
+
+	<!-- Yaw Adjust -->
+
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/rudder-cmd-norm</independentVar>
+				<tableData>
+					-1.0 	-0.78
+					-0.1	0
+					0.1		0
+					1.0		0.78
+				</tableData>
+			</table>
+			<output>propulsion/rudder-r-pos-cmd</output>
+		</scheduled_gain>
+		
+	<!-- Pitch -->
+		
+		<summer>
+			<input>propulsion/cyclic_q-pos-cmd</input>
+			<input>propulsion/rudder-r-pos-cmd</input>
+			<input>propulsion/damping_q-rad_sec</input>
+			<input>propulsion/damping_r-rad_sec</input>
+			<input>propulsion/cyclic_pr-pos-cmd</input>			
+			<clipto>
+				<min>0.78</min> <!-- 45 degs forward  -->
+				<max>2.35</max> <!-- 45 degs backwards -->
+			</clipto>
+			<output>propulsion/engine[2]/pitch-angle-rad</output>
+			<output>propulsion/engine[3]/pitch-angle-rad</output>
+		</summer>
+		
+		<summer>
+			<input>propulsion/cyclic_q-pos-cmd</input>
+			<input>-propulsion/rudder-r-pos-cmd</input>
+			<input>propulsion/damping_q-rad_sec</input>
+			<input>-propulsion/damping_r-rad_sec</input>
+			<input>-propulsion/cyclic_pr-pos-cmd</input>			
+			<clipto>
+				<min>0.78</min> <!-- 45 degs forward  -->
+				<max>2.35</max> <!-- 45 degs backwards -->
+			</clipto>
+			<output>propulsion/engine[4]/pitch-angle-rad</output>
+			<output>propulsion/engine[5]/pitch-angle-rad</output>
+		</summer>
+		
+	<!-- Roll -->
+
+		<summer>
+			<input>propulsion/collective/blade-angle-cmd</input>
+			<input>propulsion/cyclic_p-pos-cmd</input>
+			<input>-propulsion/damping_p-rad_sec</input>
+			<clipto>
+				<min>0</min>
+				<max>40.3</max>
+			</clipto>			
+			<output>propulsion/engine[2]/blade-angle</output>
+			<output>propulsion/engine[3]/blade-angle</output>
+		</summer>
+		
+		<summer>
+			<input>propulsion/collective/blade-angle-cmd</input>
+			<input>-propulsion/cyclic_p-pos-cmd</input>
+			<input>propulsion/damping_p-rad_sec</input>
+			<clipto>
+				<min>0</min>
+				<max>40.3</max>
+			</clipto>			
+			<output>propulsion/engine[4]/blade-angle</output>
+			<output>propulsion/engine[5]/blade-angle</output>
+		</summer>
+		
+	<!-- Roll Rate -->
+			
+		<pure_gain>
+			<input>velocities/p-rad_sec</input>
+			<gain>15</gain>
+			<output>propulsion/damping_p-rad_sec</output>
+		</pure_gain>		
+		
+	<!-- Pitch Rate -->
+		
+		<pure_gain>
+			<input>velocities/q-rad_sec</input>
+			<gain>-5</gain>
+			<output>propulsion/damping_q-rad_sec</output>
+		</pure_gain>		
+
+	<!-- Yaw Rate -->
+		
+		<pure_gain>
+			<input>velocities/r-rad_sec</input>
+			<gain>1</gain>
+			<output>propulsion/damping_r-rad_sec</output>
+		</pure_gain>
+		
+</channel>
+		
+<channel name="Normal Flight" execute="T4T/AGP/mode-1">
+
+	<!-- Collective Adjust -->
+
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/thrust-pos-cmd</independentVar>
+				<tableData>
+					-0.6	0
+					0.6		31.2
+					0.95	38
+				</tableData>
+			</table>
+			<output>propulsion/collective/blade-angle-cmd</output>
+		</scheduled_gain>
+
+	<!-- Pitch Adjust -->
+			
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/elevator-cmd-norm</independentVar>
+				<tableData>
+					-0.4 	2.14
+					0.0		1.57
+					0.4		1.0
+				</tableData>
+			</table>
+			<output>propulsion/cyclic_q-pos-cmd</output>
+		</scheduled_gain>
+		
+	<!-- Elevator Adjust -->
+	
+		<summer>
+			<input>fcs/elevator-cmd-norm</input>
+			<input></input>
+			<output>fcs/elevator-pos-norm</output>
+		</summer>
+		
+		<scheduled_gain>
+			<input>-T4T/aero/directionU</input>		
+			<table>
+				<independentVar>fcs/elevator-cmd-norm</independentVar>
+				<tableData>
+					-1 -13
+					0	0
+					1	13
+				</tableData>
+			</table>
+			<output>T4T/aero/h-tail/rigging-deg</output>			
+		</scheduled_gain>		
+
+	<!-- Roll Adjust -->
+	
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/aileron-cmd-norm</independentVar>
+				<tableData>
+					-1.0	-30
+					0.0		0
+					1.0		30
+				</tableData>
+			</table>
+			<output>propulsion/cyclic_p-pos-cmd</output>
+		</scheduled_gain>
+		
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>propulsion/cyclic_p-pos-cmd</independentVar>
+				<tableData>
+					-30		0.5
+					0		0
+					30		-0.5
+				</tableData>
+			</table>
+			<output>propulsion/cyclic_pr-pos-cmd</output>
+		</scheduled_gain>		
+
+	<!-- Yaw Adjust -->
+
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/rudder-cmd-norm</independentVar>
+				<tableData>
+					-1.0 	-0.78
+					-0.1	0
+					0.1		0
+					1.0		0.78
+				</tableData>
+			</table>
+			<output>propulsion/rudder-r-pos-cmd</output>
+		</scheduled_gain>
+		
+	<!-- Pitch -->
+		
+		<summer>
+			<input>propulsion/cyclic_q-pos-cmd</input>
+			<input>propulsion/rudder-r-pos-cmd</input>
+			<input>propulsion/damping_q-rad_sec</input>
+			<input>propulsion/damping_r-rad_sec</input>
+			<input>propulsion/cyclic_pr-pos-cmd</input>			
+			<clipto>
+				<min>0.78</min> <!-- 45 degs forward  -->
+				<max>2.35</max> <!-- 45 degs backwards -->
+			</clipto>
+			<output>propulsion/engine[2]/pitch-angle-rad</output>
+			<output>propulsion/engine[3]/pitch-angle-rad</output>
+		</summer>
+		
+		<summer>
+			<input>propulsion/cyclic_q-pos-cmd</input>
+			<input>-propulsion/rudder-r-pos-cmd</input>
+			<input>propulsion/damping_q-rad_sec</input>
+			<input>-propulsion/damping_r-rad_sec</input>
+			<input>-propulsion/cyclic_pr-pos-cmd</input>			
+			<clipto>
+				<min>0.78</min> <!-- 45 degs forward  -->
+				<max>2.35</max> <!-- 45 degs backwards -->
+			</clipto>
+			<output>propulsion/engine[4]/pitch-angle-rad</output>
+			<output>propulsion/engine[5]/pitch-angle-rad</output>
+		</summer>
+		
+	<!-- Roll -->
+
+		<summer>
+			<input>propulsion/collective/blade-angle-cmd</input>
+			<input>propulsion/cyclic_p-pos-cmd</input>
+			<input>-propulsion/damping_p-rad_sec</input>
+			<clipto>
+				<min>0</min>
+				<max>40.3</max>
+			</clipto>			
+			<output>propulsion/engine[2]/blade-angle</output>
+			<output>propulsion/engine[3]/blade-angle</output>
+		</summer>
+		
+		<summer>
+			<input>propulsion/collective/blade-angle-cmd</input>
+			<input>-propulsion/cyclic_p-pos-cmd</input>
+			<input>propulsion/damping_p-rad_sec</input>
+			<clipto>
+				<min>0</min>
+				<max>40.3</max>
+			</clipto>			
+			<output>propulsion/engine[4]/blade-angle</output>
+			<output>propulsion/engine[5]/blade-angle</output>
+		</summer>
+		
+	<!-- Roll Rate -->
+			
+		<pure_gain>
+			<input>velocities/p-rad_sec</input>
+			<gain>15</gain>
+			<output>propulsion/damping_p-rad_sec</output>
+		</pure_gain>		
+		
+	<!-- Pitch Rate -->
+		
+		<pure_gain>
+			<input>velocities/q-rad_sec</input>
+			<gain>-5</gain>
+			<output>propulsion/damping_q-rad_sec</output>
+		</pure_gain>		
+
+	<!-- Yaw Rate -->
+		
+		<pure_gain>
+			<input>velocities/r-rad_sec</input>
+			<gain>1</gain>
+			<output>propulsion/damping_r-rad_sec</output>
+		</pure_gain>			
+
+</channel>
+	
+<channel name="Hover Flight" execute="T4T/AGP/mode-2">
+
+	<!-- Collective Adjust -->
+			
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/thrust-pos-cmd</independentVar>
+				<tableData>
+					-0.6	-5
+					0.28	0
+					0.35	0					
+					0.6		5
+				</tableData>
+			</table>
+			<output>T4T/AGP/PID/collective/target_down-fps</output>
+		</scheduled_gain>
+
+		<summer>
+			<input>velocities/v-down-fps</input>
+			<input>T4T/AGP/PID/collective/target_down-fps</input>
+			<output>T4T/AGP/PID/collective/error_down-fps</output>
+		</summer>
+
+		<pid>
+			<input>T4T/AGP/PID/collective/error_down-fps</input>
+			<kp>0.003</kp>
+			<ki>0</ki>
+			<kd>0.003</kd>
+			<clipto>
+				<min>-0.2</min>
+				<max>0.2</max>
+			</clipto>
+			<output>propulsion/collective_down-pos-cmd</output>
+		</pid>
+
+	<!-- Pitch Adjust -->
+					
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/elevator-cmd-norm</independentVar>
+				<tableData>
+					-1.0 	-5
+					-0.05	0
+					0.05	0
+					1.0		5
+				</tableData>
+			</table>
+			<output>T4T/AGP/PID/cyclic/target_u-fps</output>
+		</scheduled_gain>
+
+		<summer>
+			<input>-velocities/u-fps</input>
+			<input>T4T/AGP/PID/cyclic/target_u-fps</input>
+			<output>T4T/AGP/PID/cyclic/error_u-fps</output>
+		</summer>
+		
+		<pid>
+			<input>-T4T/AGP/PID/cyclic/error_u-fps</input>
+			<kp>0.001</kp>
+			<ki>0</ki>
+			<kd>0.001</kd>
+			<output>propulsion/cyclic_u-pos-cmd</output>
+		</pid>	
+
+	<!-- Elevator Adjust -->
+	
+		<summer>
+			<input>fcs/elevator-cmd-norm</input>
+			<input></input>
+			<output>fcs/elevator-pos-norm</output>
+		</summer>
+
+		<scheduled_gain>
+			<input>T4T/one</input>		
+			<table>
+				<independentVar>fcs/elevator-cmd-norm</independentVar>
+				<tableData>
+					-1 -13
+					0	0
+					1	13
+				</tableData>
+			</table>
+			<output>T4T/aero/h-tail/rigging-deg1</output>
+		</scheduled_gain>
+		<pure_gain>
+			<input>-T4T/aero/directionU</input>		
+			<gain>T4T/aero/h-tail_left/alpha-deg</gain>
+			<output>T4T/aero/h-tail/rigging-deg2</output>
+		</pure_gain>
+		<switch>
+			<default value="T4T/aero/h-tail/rigging-deg2"/>
+			<test value="T4T/aero/h-tail/rigging-deg1">
+				T4T/velocities/h-tail_left/true-fps GT 100
+			</test>
+			<output>T4T/aero/h-tail/rigging-deg</output>
+		</switch>
+
+	<!-- Roll Adjust -->
+	
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/aileron-cmd-norm</independentVar>
+				<tableData>
+					-1.0 	-5
+					-0.03	0
+					0.03	0
+					1.0		5
+				</tableData>
+			</table>
+			<output>T4T/AGP/PID/cyclic/target_v-fps</output>
+		</scheduled_gain>
+
+		<summer>
+			<input>velocities/v-fps</input>
+			<input>-T4T/AGP/PID/cyclic/target_v-fps</input>
+			<output>T4T/AGP/PID/cyclic/error_v-fps</output>
+		</summer>
+		
+		<pid>
+			<input>T4T/AGP/PID/cyclic/error_v-fps</input>
+			<kp>0.001</kp>
+			<ki>0</ki>
+			<kd>0.001</kd>
+			<output>propulsion/cyclic_v-pos-cmd</output>
+		</pid>
+		
+	<!-- Yaw Adjust -->
+	
+		<scheduled_gain>
+			<input>T4T/one</input>
+			<table>
+				<independentVar>fcs/rudder-cmd-norm</independentVar>
+				<tableData>
+					-1.0 	0.3
+					-0.1	0
+					0.1		0
+					1.0		-0.3
+				</tableData>
+			</table>
+			<output>T4T/AGP/PID/rudder/target</output>
+		</scheduled_gain>
+		
+		<summer>
+			<input>-velocities/r-rad_sec</input>
+			<input>T4T/AGP/PID/rudder/target</input>
+			<output>T4T/AGP/PID/rudder/error</output>
+		</summer>
+
+		<pid>
+			<input>-T4T/AGP/PID/rudder/error</input>
+			<kp>0.1</kp>
+			<ki>0</ki>
+			<kd>0.1</kd>
+			<output>propulsion/rudder_r-pos-cmd</output>
+		</pid>		
+
+	<!-- Pitch -->
+
+		<summer>
+			<input>propulsion/cyclic_u-pos-cmd</input>
+			<input>propulsion/rudder_r-pos-cmd</input>				
+			<input>propulsion/damping_q-rad</input>						
+			<input>propulsion/damping_m-lbsft</input>
+			<input>propulsion/damping_q-rad_sec</input>
+			<input>propulsion/damping_n-lbsft</input>			
+			<input>propulsion/damping_r-rad_sec</input>
+			<output>propulsion/pitch_port-adjust</output>
+		</summer>
+
+		<summer>
+			<input>propulsion/engine[2]/pitch-angle-rad</input>
+			<input>propulsion/pitch_port-adjust</input>
+			<clipto>
+				<min>0.78</min> <!-- 45 degs forward  -->
+				<max>2.35</max> <!-- 45 degs backwards -->
+			</clipto>
+			<output>propulsion/engine[2]/pitch-angle-rad</output>
+			<output>propulsion/engine[3]/pitch-angle-rad</output>
+		</summer>
+		
+		<summer>
+			<input>propulsion/cyclic_u-pos-cmd</input>
+			<input>-propulsion/rudder_r-pos-cmd</input>			
+			<input>propulsion/damping_q-rad</input>			
+			<input>propulsion/damping_m-lbsft</input>
+			<input>propulsion/damping_q-rad_sec</input>
+			<input>-propulsion/damping_n-lbsft</input>			
+			<input>-propulsion/damping_r-rad_sec</input>
+			<output>propulsion/pitch_starboard-adjust</output>
+		</summer>		
+		
+		<summer>
+			<input>propulsion/engine[4]/pitch-angle-rad</input>
+			<input>propulsion/pitch_starboard-adjust</input>
+			<clipto>
+				<min>0.78</min> <!-- 45 degs forward  -->
+				<max>2.35</max> <!-- 45 degs backwards -->
+			</clipto>
+			<output>propulsion/engine[4]/pitch-angle-rad</output>
+			<output>propulsion/engine[5]/pitch-angle-rad</output>
+		</summer>
+
+	<!-- Roll -->
+
+		<summer>
+			<input>propulsion/engine[2]/blade-angle</input>
+			<input>-propulsion/cyclic_v-pos-cmd</input>
+			<input>propulsion/collective_down-pos-cmd</input>			
+			<input>-propulsion/damping_p-rad</input>
+			<input>propulsion/damping_l-lbsft</input>
+			<input>-propulsion/damping_p-rad_sec</input>
+			<clipto>
+				<min>-5</min>
+				<max>40.3</max>
+			</clipto>
+			<output>propulsion/engine[2]/blade-angle</output>
+			<output>propulsion/engine[3]/blade-angle</output>
+		</summer>
+		
+		<summer>
+			<input>propulsion/engine[4]/blade-angle</input>
+			<input>propulsion/cyclic_v-pos-cmd</input>
+			<input>propulsion/collective_down-pos-cmd</input>			
+			<input>propulsion/damping_p-rad</input>
+			<input>-propulsion/damping_l-lbsft</input>
+			<input>propulsion/damping_p-rad_sec</input>
+			<clipto>
+				<min>-5</min>
+				<max>40.3</max>
+			</clipto>
+			<output>propulsion/engine[4]/blade-angle</output>
+			<output>propulsion/engine[5]/blade-angle</output>
+		</summer>
+		
+	<!-- Roll Rate -->
+
+		<pure_gain>
+			<input>attitude/roll-rad</input>
+			<gain>0.01</gain>
+			<output>propulsion/damping_p-rad</output>
+		</pure_gain>
+		
+		<pure_gain>
+			<input>velocities/p-rad_sec</input>
+			<gain>0.2</gain>
+			<output>propulsion/damping_p-rad_sec</output>
+		</pure_gain>
+		
+		<pure_gain>
+			<input>moments/l-total-lbsft</input>
+			<gain>-0.00001</gain>
+			<output>propulsion/damping_l-lbsft</output>
+		</pure_gain>		
+		
+	<!-- Pitch Rate -->
+
+		<pure_gain>
+			<input>attitude/pitch-rad</input>
+			<gain>-0.01</gain>
+			<output>propulsion/damping_q-rad</output>
+		</pure_gain>
+				
+		<pure_gain>
+			<input>velocities/q-rad_sec</input>
+			<gain>-0.2</gain>
+			<output>propulsion/damping_q-rad_sec</output>
+		</pure_gain>
+
+		<pure_gain>
+			<input>moments/m-total-lbsft</input>
+			<gain>-0.00001</gain>
+			<output>propulsion/damping_m-lbsft</output>
+		</pure_gain>
+	
+	<!-- Yaw Rate -->
+
+		<pure_gain>
+			<input>velocities/r-rad_sec</input>
+			<gain>0.02</gain>
+			<output>propulsion/damping_r-rad_sec</output>
+		</pure_gain>
+		
+		<pure_gain>
+			<input>moments/n-total-lbsft</input>
+			<gain>0.0000001</gain>
+			<output>propulsion/damping_n-lbsft</output>
+		</pure_gain>		
+
+</channel>
+		
+</system>

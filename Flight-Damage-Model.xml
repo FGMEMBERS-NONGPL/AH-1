@@ -1,0 +1,561 @@
+<?xml version="1.0"?>					
+					
+<!--					
+**************************************************************************					
+					
+Copyright (c) 2020 Simon 'bomber' Morley					
+simonbomber64 at googlemail.com					
+					
+This work is licensed under the					
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.					
+To view a copy of this license,					
+visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or					
+send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.					
+					
+Attribution,  You must give appropriate credit, provide a link to the license,					
+and indicate if changes were made. You may do so in any reasonable manner,					
+but not in any way that suggests the licensor endorses you or your use.					
+					
+NonCommercial,  You may not use the material for commercial purposes.					
+					
+ShareAlike,  If you remix, transform, or build upon the material,					
+you must distribute your contributions under the same license as the original.					
+					
+**************************************************************************					
+-->					
+					
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>					
+<fdm_config name="T4T AT-99 Scorpion(JSBSim)" version="2.0" release="BETA"					
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"					
+xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">					
+					
+<fileheader>					
+<author>Simon 'bomber' Morley</author>					
+<filecreationdate> 2019-10-25 </filecreationdate>					
+<version> $Revision: 1.0 $ </version>					
+<description>AT-99 Scorpion from Avatar</description>					
+</fileheader>					
+					
+	<metrics>				
+					
+		<wingspan unit="FT">36.91</wingspan>			
+		<wingarea unit="FT2">242.086744416544</wingarea>			
+		<chord unit="FT">7.4</chord>			<!-- @ 50% ft-->
+					
+		<htailarea unit="FT2">44.4</htailarea>			
+		<htailarm unit="FT">25.26</htailarm>			
+					
+		<vtailarea unit="FT2">35.4</vtailarea>			
+		<vtailarm unit="FT">25.26</vtailarm>			
+
+		<!-- engine rotations -->		
+		<property type="double" value="0.14">propulsion/engine[2]/yaw-angle-rad</property>
+		<property type="double" value="0.14">propulsion/engine[3]/yaw-angle-rad</property>
+		<property type="double" value="-0.14">propulsion/engine[4]/yaw-angle-rad</property>
+		<property type="double" value="-0.14">propulsion/engine[5]/yaw-angle-rad</property>		
+		<property type="double" value="0.262">propulsion/engine[0]/pitch-angle-rad</property>
+		<property type="double" value="0.262">propulsion/engine[1]/pitch-angle-rad</property>
+		<property type="double" value="1.57">propulsion/pitch-default-angle-rad</property>
+		
+	</metrics>				
+					
+	<mass_balance>				
+
+		<!-- inetia values to rotor co-ords -->					
+		<ixx unit="SLUG*FT2">6244</ixx>			
+		<iyy unit="SLUG*FT2">7910</iyy>			
+		<izz unit="SLUG*FT2">7800</izz>			
+		<ixy unit="SLUG*FT2">0</ixy>
+		<iyz unit="SLUG*FT2">0</iyz>		
+		<ixz unit="SLUG*FT2">-882</ixz>		 <!-- IMPORTANT always use a negative value -->
+		<emptywt unit="LBS">7754.42</emptywt>			
+		<location name="AERORP" unit="IN">			
+			<x>59.04</x>		
+			<y>0</y>		
+			<z>55.6</z>		
+		</location>			
+		<location name="CG" unit="IN">			
+			<x>61.3</x>		
+			<y>0</y>		
+			<z>14.98</z>		
+		</location>			
+	
+	</mass_balance>				
+					
+	<ground_reactions>				
+					
+		<contact type="BOGEY" name="left_front_skid">			
+			<location unit="FT">		
+				<x>0.0</x>	
+				<y>-3</y>	
+				<z>-4.8</z>	
+			</location>		
+			<static_friction>100</static_friction>		
+			<dynamic_friction>100</dynamic_friction>		
+			<rolling_friction>100</rolling_friction>		
+			<spring_coeff unit="LBS/FT">30000</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">0</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">20000</damping_coeff_rebound>
+		</contact>			
+					
+		<contact type="BOGEY" name="right_front_skid">			
+			<location unit="FT">		
+				<x>0.0</x>	
+				<y>3</y>	
+				<z>-4.8</z>	
+			</location>		
+			<static_friction>100</static_friction>		
+			<dynamic_friction>100</dynamic_friction>
+			<rolling_friction>100</rolling_friction>		
+			<spring_coeff unit="LBS/FT">30000</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">0</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">20000</damping_coeff_rebound>
+		</contact>						
+					
+		<contact type="BOGEY" name="left_rear_skid">			
+			<location unit="FT">		
+				<x>10.0</x>	
+				<y>-3.6</y>	
+				<z>-4.8</z>	
+			</location>		
+			<static_friction>100</static_friction>		
+			<dynamic_friction>100</dynamic_friction>		
+			<rolling_friction>100</rolling_friction>		
+			<spring_coeff unit="LBS/FT">30000</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">0</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">20000</damping_coeff_rebound>
+		</contact>			
+					
+		<contact type="BOGEY" name="right_rear_skid">			
+			<location unit="FT">		
+				<x>10.0</x>	
+				<y>3.6</y>	
+				<z>-4.8</z>	
+			</location>		
+			<static_friction>100</static_friction>		
+			<dynamic_friction>100</dynamic_friction>
+			<rolling_friction>100</rolling_friction>		
+			<spring_coeff unit="LBS/FT">30000</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">0</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">20000</damping_coeff_rebound>
+		</contact>			
+					
+	<!-- HIGH LEVEL JACKS (for use in wind tunnel)				
+		-->			
+		
+		<contact type="STRUCTURE" name="NOSE">			
+			<location unit="FT">		
+				<x>-5.3</x>	
+				<z>-2.3</z>	
+			</location>		
+			<static_friction>1</static_friction>		
+			<dynamic_friction>1</dynamic_friction>		
+			<spring_coeff unit="LBS/FT">3699.29415721678</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">369.929415721678</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">92.4823539304195</damping_coeff_rebound>		
+		</contact>			
+					
+		<contact type="STRUCTURE" name="WINGTIP_LEFT">			
+			<location unit="FT">		
+				<x>6.4</x>	
+				<y>-9.7</y>	
+				<z>0.0</z>	
+			</location>		
+			<static_friction>1</static_friction>		
+			<dynamic_friction>1</dynamic_friction>		
+			<spring_coeff unit="LBS/FT">3699.29415721678</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">369.929415721678</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">92.4823539304195</damping_coeff_rebound>		
+		</contact>			
+					
+		<contact type="STRUCTURE" name="WINGTIP_RIGHT">			
+			<location unit="FT">		
+				<x>6.4</x>	
+				<y>9.7</y>	
+				<z>0.0</z>	
+			</location>		
+			<static_friction>1</static_friction>		
+			<dynamic_friction>1</dynamic_friction>		
+			<spring_coeff unit="LBS/FT">3699.29415721678</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">369.929415721678</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">92.4823539304195</damping_coeff_rebound>		
+		</contact>
+
+		<contact type="STRUCTURE" name="ROTOR_LEFT">			
+			<location unit="FT">		
+				<x>4.9</x>	
+				<y>-14.5</y>	
+				<z>6.7</z>	
+			</location>		
+			<static_friction>1</static_friction>		
+			<dynamic_friction>1</dynamic_friction>		
+			<spring_coeff unit="LBS/FT">3699.29415721678</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">369.929415721678</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">92.4823539304195</damping_coeff_rebound>		
+		</contact>			
+					
+		<contact type="STRUCTURE" name="ROTOR_RIGHT">			
+			<location unit="FT">		
+				<x>4.9</x>	
+				<y>14.5</y>	
+				<z>6.7</z>	
+			</location>		
+			<static_friction>1</static_friction>		
+			<dynamic_friction>1</dynamic_friction>		
+			<spring_coeff unit="LBS/FT">3699.29415721678</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">369.929415721678</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">92.4823539304195</damping_coeff_rebound>		
+		</contact>			
+					
+		<contact type="STRUCTURE" name="VSTAB_TOP">			
+			<location unit="FT">		
+				<x>27</x>				
+				<z>1.5</z>	
+			</location>		
+			<static_friction>1</static_friction>		
+			<dynamic_friction>1</dynamic_friction>		
+			<spring_coeff unit="LBS/FT">3699.29415721678</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">369.929415721678</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">92.4823539304195</damping_coeff_rebound>		
+		</contact>
+
+		<contact type="STRUCTURE" name="VSTAB_BOTTOM">			
+			<location unit="FT">		
+				<x>28.5</x>				
+				<z>1.5</z>
+			</location>		
+			<static_friction>1</static_friction>		
+			<dynamic_friction>1</dynamic_friction>		
+			<spring_coeff unit="LBS/FT">3699.29415721678</spring_coeff>		
+			<damping_coeff unit="LBS/FT/SEC">369.929415721678</damping_coeff>		
+			<damping_coeff_rebound unit="LBS/FT/SEC">92.4823539304195</damping_coeff_rebound>		
+		</contact>			
+					
+	</ground_reactions>				
+					
+	<propulsion>				
+		<engine file="Magnussen_KE-76">		
+			<location unit="FT">		
+				<x>9.28</x>
+				<y>-1.35</y>
+				<z>0.66</z>				
+			</location>			
+			<feed>0</feed>
+			<feed>1</feed>
+			<feed>2</feed>
+			<thruster file="generator">		
+				<location unit="FT">	
+					<x>4.27</x>
+					<y>-1.35</y>
+					<z>2.03</z>	
+				</location>	
+				<sense>1</sense>
+			</thruster>		
+		</engine>
+		
+		<engine file="Magnussen_KE-76">		
+			<location unit="FT">		
+				<x>9.28</x>
+				<y>1.35</y>
+				<z>0.66</z>				
+			</location>			
+			<feed>0</feed>
+			<feed>1</feed>
+			<feed>2</feed>			
+			<thruster file="generator">		
+				<location unit="FT">	
+					<x>4.27</x>
+					<y>1.35</y>
+					<z>2.03</z>	
+				</location>				
+				<sense>-1</sense>	
+			</thruster>		
+		</engine>
+		
+		<tank type="FUEL" number="0">			<!-- Main Fuel Tank -->
+			<location unit="FT">
+				<x>4.92</x>
+				<z>-1.38</z>		
+			</location>		
+			<capacity unit="LBS">1296</capacity>		
+			<contents unit="LBS">1296</contents>
+			<drain_location unit="FT">
+				<x>4.92</x>
+				<z>-0.78</z>
+			</drain_location>
+			<priority>2</priority>		
+		</tank>
+
+		<tank type="FUEL" number="1">			<!-- Port Fuel Tank -->
+			<location unit="FT">
+				<x>7.32</x>
+				<y>-0.63</y>
+				<z>-0.12</z>
+			</location>		
+			<capacity unit="LBS">1116</capacity>		
+			<contents unit="LBS">1116</contents>
+			<drain_location unit="FT">
+				<x>4.92</x>
+				<y>0.63</y>
+				<z>-0.12</z>
+			</drain_location>			
+			<priority>1</priority>		
+		</tank>
+
+		<tank type="FUEL" number="2">			<!-- Starboard Fuel Tank -->
+			<location unit="FT">
+				<x>7.32</x>
+				<y>3.12</y>				
+				<z>0.66</z>				
+			</location>		
+			<capacity unit="LBS">1116</capacity>		
+			<contents unit="LBS">1116</contents>
+			<drain_location unit="FT">
+				<x>4.92</x>
+				<y>-3.12</y>
+				<z>0.66</z>
+			</drain_location>			
+			<priority>1</priority>		
+		</tank>		
+					
+		<tank type="FUEL" number="3">			<!-- Engine coolant -->
+			<location unit="FT">		
+				<x>3.28</x>	
+				<y>-2.3</y>					
+			</location>		
+			<capacity unit="LBS">220</capacity>		
+			<contents unit="LBS">220</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="4">			<!-- Generator coolant -->
+			<location unit="FT">		
+				<x>3.28</x>	
+				<y>2.3</y>					
+			</location>		
+			<capacity unit="LBS">220</capacity>		
+			<contents unit="LBS">220</contents>		
+		</tank>	
+
+		<tank type="FUEL" number="5">			<!-- Generator Capacotor Bank -->	
+			<capacity unit="LBS">1</capacity>		
+			<contents unit="LBS">1</contents>		
+		</tank>		
+		
+	<!-- Port Side -->
+
+		<engine file="annular_motor_electric">		
+			<location unit="FT">		
+				<x>4.92</x>
+				<y>-9.61</y>
+				<z>5.12</z>				
+			</location>		
+			<thruster file="rotor_fan">		
+				<location unit="FT">	
+					<x>4.92</x>
+					<y>-9.61</y>
+					<z>5.12</z>				
+				</location>		
+				<sense> 1 </sense>	
+			</thruster>		
+		</engine>
+
+		<engine file="annular_motor_electric">		
+			<location unit="FT">		
+				<x>4.92</x>
+				<y>-9.61</y>
+				<z>4.12</z>				
+			</location>		
+			<thruster file="rotor_fan">		
+				<location unit="FT">	
+					<x>4.92</x>
+					<y>-9.61</y>
+					<z>4.12</z>				
+				</location>				
+				<sense> -1 </sense>	
+			</thruster>		
+		</engine>
+
+	<!-- Starboard Side -->
+	
+		<engine file="annular_motor_electric">		
+			<location unit="FT">		
+				<x>4.92</x>
+				<y>9.61</y>
+				<z>5.12</z>				
+			</location>		
+			<thruster file="rotor_fan">		
+				<location unit="FT">	
+					<x>4.92</x>
+					<y>9.61</y>
+					<z>5.12</z>				
+				</location>		
+				<sense> 1 </sense>	
+			</thruster>		
+		</engine>
+
+		<engine file="annular_motor_electric">		
+			<location unit="FT">		
+				<x>4.92</x>
+				<y>9.61</y>
+				<z>4.12</z>				
+			</location>		
+			<thruster file="rotor_fan">		
+				<location unit="FT">	
+					<x>4.92</x>
+					<y>9.61</y>
+					<z>4.12</z>				
+				</location>				
+				<sense> -1 </sense>	
+			</thruster>		
+		</engine>
+
+	<!-- Armament  left -->				
+					
+		<tank type="FUEL" number="6">			<!-- 190 TK-411 WAFAR (19*5) -->
+			<location unit="FT">		
+				<x>5.91</x>	
+				<y>-6.04</y>	
+				<z>-0.49</z>	
+			</location>		
+			<capacity unit="LBS">1298.52</capacity>		
+			<contents unit="LBS">1298.52</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="7">			<!-- Hellfire (4 off) -->
+			<location unit="FT">		
+				<x>5.91</x>	
+				<y>-9.25</y>	
+				<z>-1.64</z>	
+			</location>		
+			<capacity unit="LBS">432.11</capacity>		
+			<contents unit="LBS">432.11</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="8">			<!-- AMMUNITION FOR GATLIN 20mm (750)  -->
+			<location unit="FT">		
+				<x>0.59</x>	
+				<z>-2.3</z>
+			</location>		
+			<capacity unit="LBS">214.95</capacity>		
+			<contents unit="LBS">214.95</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="9">			<!--  AMMUNITION FOR BROWNING .5 (750)  -->
+			<location unit="FT">
+				<z>-2.3</z>
+			</location>		
+			<capacity unit="LBS">190.15</capacity>		
+			<contents unit="LBS">190.15</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="10">			<!--  AMMUNITION FOR BROWNING .5 (750)  -->
+			<location unit="FT">	
+				<z>-2.3</z>
+			</location>		
+			<capacity unit="LBS">190.15</capacity>		
+			<contents unit="LBS">190.15</contents>		
+		</tank>	
+
+	<!-- Armament  right -->			
+					
+		<tank type="FUEL" number="11">			<!-- 190 TK-411 WAFAR (19*5) -->
+			<location unit="FT">		
+				<x>5.91</x>	
+				<y>6.04</y>	
+				<z>-0.49</z>	
+			</location>		
+			<capacity unit="LBS">1298.52</capacity>		
+			<contents unit="LBS">1298.52</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="12">			<!-- Hellfire (4 off) -->
+			<location unit="FT">		
+				<x>5.91</x>	
+				<y>9.25</y>	
+				<z>-1.64</z>	
+			</location>		
+			<capacity unit="LBS">432.11</capacity>		
+			<contents unit="LBS">432.11</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="13">			<!-- AMMUNITION FOR GATLIN 20mm (750)  -->
+			<location unit="FT">		
+				<x>0.59</x>	
+				<z>-2.3</z>
+			</location>		
+			<capacity unit="LBS">214.95</capacity>		
+			<contents unit="LBS">214.95</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="14">			<!--  AMMUNITION FOR BROWNING .5 (750)  -->
+			<location unit="FT">	
+				<z>-2.3</z>
+			</location>		
+			<capacity unit="LBS">190.15</capacity>		
+			<contents unit="LBS">190.15</contents>		
+		</tank>			
+					
+		<tank type="FUEL" number="15">			<!--  AMMUNITION FOR BROWNING .5 (750)  -->
+			<location unit="FT">		
+				<z>-2.3</z>
+			</location>		
+			<capacity unit="LBS">190.15</capacity>		
+			<contents unit="LBS">190.15</contents>		
+		</tank>
+					
+	</propulsion>
+
+	<system file = "propulsion"/>
+	<system file = "angle_of_attack"/>
+	<system file = "co-efficients"/>		
+	<system file = "force_calcs"/>		
+	<system file = "flight_control"/>
+	
+	<!--
+		
+	<system file = "T4T/test"/> 				
+	-->
+				
+	<aerodynamics>
+	</aerodynamics>				
+					
+	<!-- STRUCTURAL frame (x +ve aft, y +ve right, z +ve up) -->				
+	<external_reactions>
+		
+		<force name="tail" frame="BODY">
+			<function>		
+				<value>1</value>	
+			</function>
+			<location unit="FT">		
+				<x>25.92</x>
+				<z>3.75</z>				
+			</location>			
+		</force>	
+		
+		<force name="fuselage" frame="BODY">			
+			<function>		
+				<value>1</value>	
+			</function>
+			<location unit="FT">			
+			</location>				
+		</force>
+		
+		<force name="ground_effect" frame="LOCAL">			
+			<function>		
+				<value>1</value>	
+			</function>
+			<location unit="FT">		
+				<x>4.92</x>
+				<z>4.62</z>				
+			</location>			
+		</force>							
+
+	</external_reactions>	
+
+
+					
+	<!--				
+	<output file="T4T-Mk.I(II)/test-record"/>				
+-->					
+					
+</fdm_config>					
