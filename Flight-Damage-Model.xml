@@ -338,7 +338,11 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
 		<tank type="FUEL" number="5">			<!-- Generator Capacotor Bank -->	
 			<capacity unit="LBS">1</capacity>		
-			<contents unit="LBS">1</contents>		
+			<contents unit="LBS">1</contents>
+			<location unit="FT">		
+				<x>0</x>	
+				<y>0</y>					
+			</location>				
 		</tank>		
 		
 	<!-- Port Side -->
