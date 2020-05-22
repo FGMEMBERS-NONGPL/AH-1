@@ -533,7 +533,12 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<location unit="FT">		
 				<x>25.92</x>
 				<z>3.75</z>				
-			</location>			
+			</location>
+			<direction> <!-- optional for initial direction vector -->
+			  <x> 0 </x>
+			  <y> 0 </y>
+			  <z> 0 </z>
+			</direction>
 		</force>	
 		
 		<force name="fuselage" frame="BODY">			
@@ -541,7 +546,13 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<value>1</value>	
 			</function>
 			<location unit="FT">			
-			</location>				
+			</location>
+			<direction> <!-- optional for initial direction vector -->
+			  <x> 0 </x>
+			  <y> 0 </y>
+			  <z> 0 </z>
+			</direction>
+
 		</force>
 		
 		<force name="ground_effect" frame="LOCAL">			
@@ -551,7 +562,12 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<location unit="FT">		
 				<x>4.92</x>
 				<z>4.62</z>				
-			</location>			
+			</location>
+			<direction> <!-- optional for initial direction vector -->
+			  <x> 0 </x>
+			  <y> 0 </y>
+			  <z> 0 </z>
+			</direction>
 		</force>							
 
 	</external_reactions>	

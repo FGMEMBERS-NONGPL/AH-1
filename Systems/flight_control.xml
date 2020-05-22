@@ -38,7 +38,6 @@ z = n
 
 <system name="flight_control">
 
-<property type="double" value="1">T4T/one</property>
 <property type="double" value="0">fcs/thrust-pos-cmd</property>
 	
 <channel name="Flight Mode">

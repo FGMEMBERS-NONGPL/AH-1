@@ -375,15 +375,12 @@ you must distribute your contributions under the same license as the original.
 		
 		<fcs_function name="T4T/forces/fuselageW-lbs">																								
 			<function>																
-				<sum>																				
 					<product>				
 						<property>T4T/damage/fuselage_avg</property>																				
 						<value>1.0</value>					<!-- drag coefficient -->															
 						<value>225</value>					<!-- plan area -->												
 						<property>T4T/aero/fuselage/qbarW-psf</property>	<!-- dynamic pressure -->								
-					</product>																					
-				</sum>																						
-			</function>
+					</product>																								</function>
 			<output>external_reactions/fuselage/z</output>		
 		</fcs_function>
 		
