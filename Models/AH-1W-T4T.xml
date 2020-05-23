@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-<path>AH-1W.ac</path>
+<path>AT99.ac</path>
 <offsets>
 <!--	<x-m>-6</x-m>  -->
 <z-m>0.61</z-m>	
@@ -375,7 +375,36 @@ if(navStillOn) {
 
     </effect>
 
+ 
+<animation>
+  <type>spin</type>
+  <object-name>helixR</object-name>
+  <property>/fdm/jsbsim/propulsion/engine/propeller-rpm</property>
+  <factor>1</factor>
+  <axis>   
+   <x1-m>2.91140</x1-m>
+   <y1-m>0.23429</y1-m>
+   <z1-m>1.85149</z1-m>
+   <x2-m>3.10399</x2-m>
+   <y2-m>0.23951</y2-m>
+   <z2-m>1.45029</z2-m>
+  </axis>
+</animation>
 
+<animation>
+  <type>spin</type>
+  <object-name>helixL</object-name>
+  <property>/fdm/jsbsim/propulsion/engine/propeller-rpm</property>
+  <factor>-1</factor>
+  <axis>   
+   <x1-m>-2.75938</x1-m>
+   <y1-m>0.41190</y1-m>
+   <z1-m>1.92119</z1-m>
+   <x2-m>-2.93957</x2-m>
+   <y2-m>0.42226</y2-m>
+   <z2-m>1.50897</z2-m>
+  </axis>
+</animation>
 
 <!-- Gun Turret Animations -->
 
@@ -558,29 +587,6 @@ if(navStillOn) {
 <heading-deg>0</heading-deg>
 </offsets>
 
-</model>
-
-
-<model>
-<path>Aircraft/AH-1/Models/MainRotor/mainrotor.xml</path>
-<offsets>
-<x-m>0</x-m>
-<y-m>0</y-m>
-<z-m>1</z-m>
-<pitch-deg>0</pitch-deg>
-<heading-deg>38</heading-deg>
-</offsets>
-</model>
-
-<model>
-<path>Aircraft/AH-1/Models/TailRotor/tailrotor.xml</path>
-<offsets>
-<x-m>0.2</x-m>
-<y-m>-8.36</y-m>
-<z-m>0.55</z-m>
-<roll-deg>90</roll-deg>
-<heading-deg>90</heading-deg>
-</offsets>
 </model>
 
 <!--<model>
