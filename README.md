@@ -2,7 +2,7 @@ FGUK's Bell AH-1W SuperCobra
 ======================
 
 
-[FGUK](http://www.fguk.eu/index.php/hangar/download/13-rotary-wing/516-bell-ah-1w-supercobra)
+[FGUK](http://www.fguk.me/hangar/rotary/summary/13-rotary-wing/516-bell-ah-1w-supercobra)
 
 ![FGUK IMAGE](http://www.fguk.eu/images/jdownloads/screenshots/fgfs-screen-0333.png)
 
