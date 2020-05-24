@@ -962,9 +962,31 @@
 		<interval>0.5</interval>
 	</blinking>	
 </label>	
-	
+
+
+<label>
+	<name>hover-pot positive</name>
+	<width>1</width>
+	<height>1</height>
+	<x>0</x>
+	<y>15</y>
+	<halign>center</halign>	
+	<format>%.0f</format>
+	<postfix>kts</postfix>
+	<box>false</box>
+	<option>center</option>
+	<input>
+		<property>fdm/jsbsim/fcs/hover-pot</property>
+	</input>
+ 	<condition>
+		<equals>
+			<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+			<value>1</value>
+		</equals>
+	</condition>  
+</label>	
 <gauge>
-	<name>Long Velocity Target</name>
+	<name>Long Velocity Target 5</name>
 	<x>-10</x>
 	<y>-90</y>
 	<width>10</width>
@@ -982,14 +1004,20 @@
 		<min>-5</min>
 	</input>
  	<condition>
-		<equals>
-			<property>fdm/jsbsim/T4T/AGP/mode-2</property>
-			<value>1</value>
-		</equals>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</less-than>			
+		</and>
 	</condition>   
 </gauge>
 <gauge>
-	<name>Long Velocity</name>
+	<name>Long Velocity 5</name>
 	<x>0</x>
 	<y>-90</y>
 	<width>10</width>
@@ -1007,15 +1035,455 @@
 		<min>-5</min>
 	</input>
  	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</less-than>			
+		</and>			
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity Target 10</name>
+	<x>-10</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>2.0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_u-fps</property>
+		<max>10</max>
+		<min>-10</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</less-than>			
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity 10</name>
+	<x>0</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/u-fps</property>
+		<max>10</max>
+		<min>-10</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</less-than>		
+		</and>			
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity Target 15</name>
+	<x>-10</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>3.0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_u-fps</property>
+		<max>15</max>
+		<min>-15</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</less-than>		
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity 15</name>
+	<x>0</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/u-fps</property>
+		<max>15</max>
+		<min>-15</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</less-than>			
+		</and>			
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity Target 20</name>
+	<x>-10</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>4.0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_u-fps</property>
+		<max>20</max>
+		<min>-20</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</less-than>			
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity 20</name>
+	<x>0</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/u-fps</property>
+		<max>20</max>
+		<min>-20</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</less-than>			
+		</and>			
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity Target 25</name>
+	<x>-10</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>5.0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_u-fps</property>
+		<max>25</max>
+		<min>-25</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</less-than>			
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity 25</name>
+	<x>0</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/u-fps</property>
+		<max>25</max>
+		<min>-25</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</less-than>			
+		</and>			
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity Target 30</name>
+	<x>-10</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>6.0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_u-fps</property>
+		<max>30</max>
+		<min>-30</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</less-than>			
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity 30</name>
+	<x>0</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/u-fps</property>
+		<max>30</max>
+		<min>-30</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</less-than>			
+		</and>			
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity Target 35</name>
+	<x>-10</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>7</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_u-fps</property>
+		<max>35</max>
+		<min>-35</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</greater-than>						
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Long Velocity 35</name>
+	<x>0</x>
+	<y>-90</y>
+	<width>10</width>
+	<height>100</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/u-fps</property>
+		<max>35</max>
+		<min>-35</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</greater-than>				
+		</and>			
+	</condition>   
+</gauge>
+<label>
+	<name>hover-pot negative</name>
+	<width>1</width>
+	<height>1</height>
+	<x>0</x>
+	<y>-97.5</y>
+	<halign>center</halign>
+	<prefix>-</prefix>	
+	<format>%.0f</format>
+	<postfix>kts</postfix>
+	<box>false</box>
+	<option>center</option>
+	<input>
+		<property>fdm/jsbsim/fcs/hover-pot</property>
+	</input>
+ 	<condition>
 		<equals>
 			<property>fdm/jsbsim/T4T/AGP/mode-2</property>
 			<value>1</value>
 		</equals>
-	</condition>   
-</gauge>
+	</condition>  
+</label>
 
 <gauge>
-	<name>Lat Velocity Target</name>
+	<name>Lat Velocity Target 5</name>
 	<x>-55</x>
 	<y>-40</y>
 	<width>110</width>
@@ -1033,14 +1501,20 @@
 		<min>-5</min>
 	</input>
  	<condition>
-		<equals>
-			<property>fdm/jsbsim/T4T/AGP/mode-2</property>
-			<value>1</value>
-		</equals>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</less-than>			
+		</and>
 	</condition>   
 </gauge>
 <gauge>
-	<name>Lat Velocity</name>
+	<name>Lat Velocity 5</name>
 	<x>-55</x>
 	<y>-47.5</y>
 	<width>110</width>
@@ -1058,15 +1532,433 @@
 		<min>-5</min>
 	</input>
  	<condition>
-		<equals>
-			<property>fdm/jsbsim/T4T/AGP/mode-2</property>
-			<value>1</value>
-		</equals>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</less-than>			
+		</and>	
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity Target 10</name>
+	<x>-55</x>
+	<y>-40</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>top</option>
+	<option>notext</option>
+	<major-divisions>2</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_v-fps</property>
+		<max>10</max>
+		<min>-10</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</less-than>				
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity 10</name>
+	<x>-55</x>
+	<y>-47.5</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>bottom</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/v-fps</property>
+		<max>10</max>
+		<min>-10</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</less-than>			
+		</and>	
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity Target 15</name>
+	<x>-55</x>
+	<y>-40</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>top</option>
+	<option>notext</option>
+	<major-divisions>3</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_v-fps</property>
+		<max>15</max>
+		<min>-15</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</less-than>				
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity 15</name>
+	<x>-55</x>
+	<y>-47.5</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>bottom</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/v-fps</property>
+		<max>15</max>
+		<min>-15</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</less-than>			
+		</and>	
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity Target 20</name>
+	<x>-55</x>
+	<y>-40</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>top</option>
+	<option>notext</option>
+	<major-divisions>4</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_v-fps</property>
+		<max>20</max>
+		<min>-20</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</less-than>				
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity 20</name>
+	<x>-55</x>
+	<y>-47.5</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>bottom</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/v-fps</property>
+		<max>20</max>
+		<min>-20</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</less-than>			
+		</and>	
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity Target 25</name>
+	<x>-55</x>
+	<y>-40</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>top</option>
+	<option>notext</option>
+	<major-divisions>5</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_v-fps</property>
+		<max>25</max>
+		<min>-25</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</less-than>				
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity 25</name>
+	<x>-55</x>
+	<y>-47.5</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>bottom</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/v-fps</property>
+		<max>25</max>
+		<min>-25</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</less-than>			
+		</and>	
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity Target 30</name>
+	<x>-55</x>
+	<y>-40</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>top</option>
+	<option>notext</option>
+	<major-divisions>6</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_v-fps</property>
+		<max>30</max>
+		<min>-30</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</less-than>				
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity 30</name>
+	<x>-55</x>
+	<y>-47.5</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>bottom</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/v-fps</property>
+		<max>30</max>
+		<min>-30</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</less-than>			
+		</and>	
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity Target 35</name>
+	<x>-55</x>
+	<y>-40</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>top</option>
+	<option>notext</option>
+	<major-divisions>7</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/cyclic/target_v-fps</property>
+		<max>35</max>
+		<min>-35</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</greater-than>					
+		</and>
+	</condition>   
+</gauge>
+<gauge>
+	<name>Lat Velocity 35</name>
+	<x>-55</x>
+	<y>-47.5</y>
+	<width>110</width>
+	<height>7.5</height>
+	<option>horizontal</option>
+	<option>bottom</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/velocities/v-fps</property>
+		<max>35</max>
+		<min>-35</min>
+	</input>
+ 	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</greater-than>			
+		</and>	
 	</condition>   
 </gauge>
 
 <gauge>
-	<name>VSI Target</name>
+	<name>VSI Target 5</name>
 	<x>50</x>
 	<y>-77.5</y>
 	<width>10</width>
@@ -1084,14 +1976,20 @@
 		<min>-5</min>
 	</input>
    	<condition>
-		<equals>
-			<property>fdm/jsbsim/T4T/AGP/mode-2</property>
-			<value>1</value>
-		</equals>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</less-than>			
+		</and>
 	</condition>  
 </gauge>
 <gauge>
-	<name>VSI</name>
+	<name>VSI 5</name>
 	<x>60</x>
 	<y>-77.5</y>
 	<width>10</width>
@@ -1109,12 +2007,431 @@
 		<min>-5</min>
 	</input>
    	<condition>
-		<equals>
-			<property>fdm/jsbsim/T4T/AGP/mode-2</property>
-			<value>1</value>
-		</equals>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</less-than>			
+		</and>
 	</condition>  
 </gauge>
+<gauge>
+	<name>VSI Target 10</name>
+	<x>50</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>2</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/collective/target_down-fps</property>
+		<max>10</max>
+		<min>-10</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</less-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI 10</name>
+	<x>60</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>/velocities/vertical-speed-fps</property>
+		<max>10</max>
+		<min>-10</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>7.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</less-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI Target 15</name>
+	<x>50</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>3</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/collective/target_down-fps</property>
+		<max>15</max>
+		<min>-15</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</less-than>		
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI 15</name>
+	<x>60</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>/velocities/vertical-speed-fps</property>
+		<max>15</max>
+		<min>-15</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>12.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</less-than>		
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI Target 20</name>
+	<x>50</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>4</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/collective/target_down-fps</property>
+		<max>20</max>
+		<min>-20</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</less-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI 20</name>
+	<x>60</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>/velocities/vertical-speed-fps</property>
+		<max>20</max>
+		<min>-20</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>17.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</less-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI Target 25</name>
+	<x>50</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>5</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/collective/target_down-fps</property>
+		<max>25</max>
+		<min>-25</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</less-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI 25</name>
+	<x>60</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>/velocities/vertical-speed-fps</property>
+		<max>25</max>
+		<min>-25</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>22.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</less-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI Target 30</name>
+	<x>50</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>6</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/collective/target_down-fps</property>
+		<max>30</max>
+		<min>-30</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</less-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI 30</name>
+	<x>60</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>/velocities/vertical-speed-fps</property>
+		<max>30</max>
+		<min>-30</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>27.5</value>
+			</greater-than>			
+			<less-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</less-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI Target 35</name>
+	<x>50</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>left</option>
+	<option>notext</option>
+	<major-divisions>7</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>fdm/jsbsim/T4T/AGP/PID/collective/target_down-fps</property>
+		<max>35</max>
+		<min>-35</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</greater-than>			
+		</and>
+	</condition>  
+</gauge>
+<gauge>
+	<name>VSI 35</name>
+	<x>60</x>
+	<y>-77.5</y>
+	<width>10</width>
+	<height>75</height>
+	<option>vertical</option>
+	<option>right</option>
+	<option>notext</option>
+	<major-divisions>0</major-divisions>
+	<minor-divisions>0</minor-divisions>
+	<enable-pointer>true</enable-pointer>
+	<pointer-type>fixed</pointer-type>
+	<input>
+		<property>/velocities/vertical-speed-fps</property>
+		<max>35</max>
+		<min>-35</min>
+	</input>
+   	<condition>
+		<and>
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-2</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/fcs/hover-pot</property>
+				<value>32.5</value>
+			</greater-than>			
+		</and>
+	</condition>  
+</gauge>
+
 
 <gauge>
 	<name>AGL upper</name>
