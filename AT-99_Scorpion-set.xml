@@ -25,6 +25,7 @@ simonbomber64 at googlemail.com
     		<tags>
       			<tag>low-wing</tag>
     		</tags>
+		<minimum-fg-version>2018.3.5</minimum-fg-version>
      
 		<flight-model>jsb</flight-model>
 		<aero>Flight-Damage-Model</aero>

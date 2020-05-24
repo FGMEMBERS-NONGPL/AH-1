@@ -8,8 +8,6 @@
         <type>material</type>
         <object-name>LCD</object-name>
         <object-name>Face</object-name>
-        <object-name>Pitch</object-name>
-        <object-name>AI</object-name>
         <object-name>AOA</object-name>
         <object-name>Ring</object-name>
         <object-name>Compass</object-name>
@@ -78,7 +76,7 @@
 			<z>0</z>
 		</axis>
 	</animation>
-	
+	<!--
 	<animation>
 		<type>translate</type>
 		<object-name>Pitch</object-name>
@@ -92,7 +90,7 @@
 			<z>1.0</z>
 		</axis>
 	</animation>
-	
+	-->
 	<animation>
 		<type>rotate</type>
 		<object-name>Ring</object-name>
@@ -109,7 +107,7 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+<!--
     <animation>
         <type>textranslate</type>
         <object-name>AI</object-name>
@@ -122,7 +120,7 @@
             <z>1</z>
         </axis>
     </animation>  
-	
+-->	
 <!-- Air Speed Indicator -->
 	
 	<animation>
