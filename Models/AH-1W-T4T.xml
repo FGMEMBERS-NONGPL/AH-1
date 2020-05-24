@@ -379,7 +379,7 @@ if(navStillOn) {
 <animation>
   <type>spin</type>
   <object-name>helixR</object-name>
-  <property>/fdm/jsbsim/propulsion/engine/propeller-rpm</property>
+  <property>/fdm/jsbsim/propulsion/engine[4]/propeller-rpm</property>
   <factor>1</factor>
   <axis>   
    <x1-m>2.91140</x1-m>
@@ -394,7 +394,7 @@ if(navStillOn) {
 <animation>
   <type>spin</type>
   <object-name>helixL</object-name>
-  <property>/fdm/jsbsim/propulsion/engine/propeller-rpm</property>
+  <property>/fdm/jsbsim/propulsion/engine[2]/propeller-rpm</property>
   <factor>-1</factor>
   <axis>   
    <x1-m>-2.75938</x1-m>
