@@ -146,5 +146,34 @@ simonbomber64 at googlemail.com
 			</mod-shift>
 		</key>
 		
+		<key n="105">
+			<name>i</name>
+			<desc>Increase hover velocity</desc>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>/fdm/jsbsim/fcs/hover-pot</property>
+				<step>1</step>
+				<min>5</min>
+				<max>36</max>
+				<wrap>true</wrap>
+			</binding>
+		</key>
+
+
+		<key n="111">
+			<name>o</name>
+			<desc>Decrease hover velocity</desc>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>/fdm/jsbsim/fcs/hover-pot</property>
+				<step>-1</step>
+				<min>5</min>
+				<max>36</max>
+				<wrap>true</wrap>
+			</binding>
+		</key>	 
+		
 	</keyboard>	
 </PropertyList>

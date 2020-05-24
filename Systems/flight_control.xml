@@ -38,7 +38,9 @@ z = n
 
 <system name="flight_control">
 
+<property type="double" value="1">T4T/one</property>
 <property type="double" value="0">fcs/thrust-pos-cmd</property>
+<property type="double" value="5">fcs/hover-pot</property>
 	
 <channel name="Flight Mode">
 
@@ -470,14 +472,14 @@ z = n
 	<!-- Collective Adjust -->
 			
 		<scheduled_gain>
-			<input>T4T/one</input>
+			<input>fcs/hover-pot</input>
 			<table>
 				<independentVar>fcs/thrust-pos-cmd</independentVar>
 				<tableData>
-					-0.6	-5
+					-0.6	-0.5
 					0.28	0
 					0.35	0					
-					0.6		5
+					0.6		0.5
 				</tableData>
 			</table>
 			<output>T4T/AGP/PID/collective/target_down-fps</output>
@@ -504,14 +506,14 @@ z = n
 	<!-- Pitch Adjust -->
 					
 		<scheduled_gain>
-			<input>T4T/one</input>
+			<input>fcs/hover-pot</input>
 			<table>
 				<independentVar>fcs/elevator-cmd-norm</independentVar>
 				<tableData>
-					-1.0 	-5
+					-1.0 	-1
 					-0.05	0
 					0.05	0
-					1.0		5
+					1.0		1
 				</tableData>
 			</table>
 			<output>T4T/AGP/PID/cyclic/target_u-fps</output>
@@ -567,14 +569,14 @@ z = n
 	<!-- Roll Adjust -->
 	
 		<scheduled_gain>
-			<input>T4T/one</input>
+			<input>fcs/hover-pot</input>
 			<table>
 				<independentVar>fcs/aileron-cmd-norm</independentVar>
 				<tableData>
-					-1.0 	-5
+					-1.0 	-1
 					-0.03	0
 					0.03	0
-					1.0		5
+					1.0		1
 				</tableData>
 			</table>
 			<output>T4T/AGP/PID/cyclic/target_v-fps</output>
