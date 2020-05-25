@@ -616,7 +616,7 @@ var vibration = { # and noise ...
 	},
 	update: func(dt) {
 		var airspeed = me.airspeedN.getValue();
-		if (airspeed > 145) { # overspeed vibration
+		if (airspeed > 190) { # overspeed vibration
 			var frequency = 2000 + 500 * rand();
 			var v = 0.49 + 0.5 * normatan(airspeed - 160, 10);
 			var intensity = v;
@@ -653,6 +653,33 @@ var vibration = { # and noise ...
 	},
 };
 
+
+# Gun =============================================================
+var gunposition = func {
+
+	var sel = getprop("/controls/armament/stick-selector");
+	var gundirection = 0;
+	var gunheight = 0;
+	var viewheading = getprop("/sim/current-view/goal-heading-offset-deg");
+	var viewpitch = getprop("/sim/current-view/goal-pitch-offset-deg");
+
+	if (sel == 1) {
+		gundirection = (360 - viewheading);
+		setprop("systems/gun-heading", gundirection);
+		gunheight = viewpitch;
+		if (gunheight > 10) { gunheight = 10; };
+		if (gunheight < -50) { gunheight = -50; };
+		setprop("systems/gun-pitch", gunheight);
+	}
+	if (sel != 1) {
+		setprop("systems/gun-heading", 0);	
+		setprop("systems/gun-pitch", 10);	
+	}
+
+	settimer(gunposition, 0.05);
+}
+
+settimer(gunposition, 0.05);
 
 
 
@@ -906,7 +933,7 @@ var main_loop = func {
 	if (replay)
 		setprop("/position/gear-agl-m", getprop("/position/altitude-agl-ft") * 0.3 - 1.2);
 	vert_speed_fpm.setDoubleValue(vertspeed.getValue() * 60);
-	gross_weight_kg.setDoubleValue(gross_weight_lb.getValue() * LB2KG);
+	#gross_weight_kg.setDoubleValue(gross_weight_lb.getValue() * LB2KG);
 
 
 	var dt = delta_time.getValue();
