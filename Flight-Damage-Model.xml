@@ -56,6 +56,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<property type="double" value="0.262">propulsion/engine[0]/pitch-angle-rad</property>
 		<property type="double" value="0.262">propulsion/engine[1]/pitch-angle-rad</property>
 		<property type="double" value="1.57">propulsion/pitch-default-angle-rad</property>
+		<property type="double" value="0.88">metrics/fuselage-Cd</property>
 		
 	</metrics>				
 					
@@ -531,8 +532,8 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<value>1</value>	
 			</function>
 			<location unit="FT">		
-				<x>25.92</x>
-				<z>3.75</z>				
+			  <x>25.92</x>
+			  <z>3.75</z>				
 			</location>
 			<direction> <!-- optional for initial direction vector -->
 			  <x> 0 </x>

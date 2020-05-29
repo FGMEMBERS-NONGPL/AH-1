@@ -344,12 +344,12 @@ you must distribute your contributions under the same license as the original.
 		</fcs_function>		
 
 		<!-- ####   U   #### -->
-																																																																													
+																																																																												
 		<fcs_function name="T4T/forces/fuselageU-lbs">																								
 			<function>																							
 				<product>			
 					<property>T4T/damage/fuselage_avg</property>				
-					<value>0.55</value>				<!-- drag coefficient -->
+					<property>metrics/fuselage-Cd</property>				<!-- drag coefficient -->
 					<property>T4T/aero/fuselage/qbarU-psf</property>	<!-- dynamic pressure -->	
 					<value>117</value>					<!-- front area -->
 				</product>																						
@@ -363,7 +363,7 @@ you must distribute your contributions under the same license as the original.
 			<function>																							
 				<product>			
 					<property>T4T/damage/fuselage_avg</property>
-					<value>0.75</value>				<!-- drag coefficient -->																				
+					<property>metrics/fuselage-Cd</property>					<!-- drag coefficient -->																				
 					<property>T4T/aero/fuselage/qbarV-psf</property>	<!-- dynamic pressure -->
 					<value>164</value>					<!-- side area -->			
 				</product>																						
@@ -373,16 +373,18 @@ you must distribute your contributions under the same license as the original.
 																													
 		<!-- ####   W   #### -->
 		
-		<fcs_function name="T4T/forces/fuselageW-lbs">
-		  <function>
-		    <product>				
-		      <property>T4T/damage/fuselage_avg</property>
-		      <value>1.0</value><!-- drag coefficient -->
-		      <value>225</value><!-- plan area -->
-		      <property>T4T/aero/fuselage/qbarW-psf</property><!-- dynamic pressure -->
-		    </product>
-		  </function>
-		  <output>external_reactions/fuselage/z</output>		
+		<fcs_function name="T4T/forces/fuselageW-lbs">																								
+			<function>																
+				<sum>																				
+					<product>				
+						<property>T4T/damage/fuselage_avg</property>																				
+						<value>1.0</value>					<!-- drag coefficient -->															
+						<value>225</value>					<!-- plan area -->												
+						<property>T4T/aero/fuselage/qbarW-psf</property>	<!-- dynamic pressure -->								
+					</product>																					
+				</sum>																						
+			</function>
+			<output>external_reactions/fuselage/z</output>		
 		</fcs_function>
 		
 		<summer>
