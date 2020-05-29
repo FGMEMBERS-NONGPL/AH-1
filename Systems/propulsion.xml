@@ -185,16 +185,16 @@ you must distribute your contributions under the same license as the original.
 
 	</channel>
 
-    <channel name="Constant Speed Rotors">
+    <channel name="Constant Speed Rotors">	
 	
 		<switch>
 			<default value="0"/>
-			<test value="propulsion/rotors-on">
+			<test value="propulsion/rotors-on">			
 				propulsion/tank[5]/pct-full GT 0
 			</test>
 			<output>propulsion/rotors-on</output>
 		</switch>
-
+			
 		<kinematic name="rotor start stop">
 			<input>propulsion/rotors-on</input>
 			<traverse>
@@ -207,19 +207,51 @@ you must distribute your contributions under the same license as the original.
 					<time>5</time>
 				</setting>
 			</traverse>
-			<output>propulsion/set_rotor-rpm</output>
+			<output>propulsion/rotors-running</output>
 		</kinematic>
-		<pure_gain>
-			<input>propulsion/set_rotor-rpm</input>
-			<gain>1770</gain>
-			<output>propulsion/rotor-rpm</output>
-		</pure_gain>
 
-<!--	Port Rotor	-->
+		<switch>
+			<default value="1770"/>
+			<test value="2124">
+				propulsion/WEP eq 1
+			</test>
+			<output>propulsion/set_rotor-rpm</output>
+		</switch>
+		<pure_gain>
+			<input>propulsion/rotors-running</input>		
+			<gain>propulsion/set_rotor-rpm</gain>
+			<output>propulsion/set_rotor-rpm</output>
+		</pure_gain>
 		
+		<scheduled_gain name="propulsion/rotors_port-rpm">
+			<input>propulsion/set_rotor-rpm</input>
+			<table>
+				<independentVar>velocities/p-rad_sec</independentVar>
+				<tableData>
+					-2	1.2				
+					2	0.8
+				</tableData>
+			</table>
+			<output>propulsion/rotors_port-rpm</output>
+		</scheduled_gain>
+
+		<scheduled_gain name="propulsion/rotors_starboard-rpm">
+			<input>propulsion/set_rotor-rpm</input>
+			<table>
+				<independentVar>velocities/p-rad_sec</independentVar>
+				<tableData>
+					-2	0.8		
+					2	1.2
+				</tableData>
+			</table>
+			<output>propulsion/rotors_starboard-rpm</output>
+		</scheduled_gain>		
+			
+<!--	Port Rotor	-->
+	
 		<summer name="propulsion/engine[2]/rpm-pid/error-rpm">
 			<input>propulsion/engine[2]/engine-rpm</input>
-			<input>-propulsion/rotor-rpm</input>
+			<input>-propulsion/rotors_port-rpm</input>
 		</summer>
 		
 		<pid name="propulsion/engine[2]/rpm-pid">
@@ -248,7 +280,7 @@ you must distribute your contributions under the same license as the original.
 		
 		<summer name="propulsion/engine[4]/rpm-pid/error-rpm">
 			<input>propulsion/engine[4]/engine-rpm</input>
-			<input>-propulsion/rotor-rpm</input>
+			<input>-propulsion/rotors_starboard-rpm</input>
 		</summer>
 		
 		<pid name="propulsion/engine[4]/rpm-pid">

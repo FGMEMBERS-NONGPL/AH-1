@@ -11,6 +11,15 @@ simonbomber64 at googlemail.com
 
 <PropertyList>
 	<keyboard>
+		<key n="101">
+			<name>e</name>
+			<desc>Emergency Power at 120%</desc>
+			<binding>
+				<command>property-toggle</command>
+				<property>/fdm/jsbsim/propulsion/WEP</property>
+			</binding>
+		</key>	
+	
 		<key n="114">
 			<name>r</name>
 			<desc>Rotor start stop</desc>

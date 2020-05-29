@@ -41,6 +41,7 @@ z = n
 <property type="double" value="1">T4T/one</property>
 <property type="double" value="0">fcs/thrust-pos-cmd</property>
 <property type="double" value="5">fcs/hover-pot</property>
+<property type="double" value="0">propulsion/WEP</property>
 	
 <channel name="Flight Mode">
 
@@ -445,7 +446,7 @@ z = n
 			
 		<pure_gain>
 			<input>velocities/p-rad_sec</input>
-			<gain>15</gain>
+			<gain>15</gain>			
 			<output>propulsion/damping_p-rad_sec</output>
 		</pure_gain>		
 		

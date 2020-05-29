@@ -972,7 +972,7 @@
 	<y>15</y>
 	<halign>center</halign>	
 	<format>%.0f</format>
-	<postfix>kts</postfix>
+	<postfix>fps</postfix>
 	<box>false</box>
 	<option>center</option>
 	<input>
@@ -1468,7 +1468,7 @@
 	<halign>center</halign>
 	<prefix>-</prefix>	
 	<format>%.0f</format>
-	<postfix>kts</postfix>
+	<postfix>fps</postfix>
 	<box>false</box>
 	<option>center</option>
 	<input>
