@@ -74,16 +74,16 @@ Based on tables from JavaProp.
 	
 	<maxrpm> is the Prop Govenors max setting
 	-->  
-	<minrpm>1770</minrpm>
-	<maxrpm>2124</maxrpm>
+	<minrpm>1500</minrpm>
+	<maxrpm>1800</maxrpm>
 	
 	<!-- 
 	<ct_factor> is the props co-efficent of thrust 'tuning' factor
 	<cp_factor> is the props co-efficent of power 'tuning' factor
 	-->
 											
-	<ct_factor> 2.35 </ct_factor>	
-	<cp_factor> 0.95 </cp_factor>
+	<ct_factor> 3.2 </ct_factor>	
+	<cp_factor> 1.0 </cp_factor>
 	
 	
 	<table name="C_THRUST" type="internal">
@@ -141,7 +141,7 @@ Based on tables from JavaProp.
 		-0.30	1.280000	0.221970	0.133622	0.003690	-0.003690	-0.133622	-0.221970	-1.280000
 		-0.20	1.280000	0.223114	0.135676	0.006192	-0.006192	-0.135676	-0.223114	-1.280000
 		-0.10	1.280000	0.222059	0.137127	0.007186	-0.007186	-0.137127	-0.222059	-1.280000
-		0.00	1.280000	-0.200789	-0.128083	-0.006554	0.006554	0.128083	0.200789	1.280000
+		0.00	-1.280000	-0.200789	-0.128083	-0.006554	0.006554	0.128083	0.200789	1.280000
 		0.10	-1.280000	-0.222059	-0.137127	-0.007186	0.007186	0.137127	0.222059	1.280000
 		0.20	-1.280000	-0.223114	-0.135676	-0.006192	0.006192	0.135676	0.223114	1.280000
 		0.30	-1.280000	-0.221970	-0.133622	-0.003690	0.003690	0.133622	0.221970	1.280000
