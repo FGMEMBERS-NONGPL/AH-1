@@ -163,7 +163,7 @@ simonbomber64 at googlemail.com
 				<command>property-adjust</command>
 				<property>/fdm/jsbsim/fcs/hover-pot</property>
 				<step>1</step>
-				<min>5</min>
+				<min>12</min>
 				<max>36</max>
 				<wrap>true</wrap>
 			</binding>
@@ -178,7 +178,7 @@ simonbomber64 at googlemail.com
 				<command>property-adjust</command>
 				<property>/fdm/jsbsim/fcs/hover-pot</property>
 				<step>-1</step>
-				<min>5</min>
+				<min>12</min>
 				<max>36</max>
 				<wrap>true</wrap>
 			</binding>

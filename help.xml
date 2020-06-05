@@ -46,7 +46,7 @@ you must distribute your contributions under the same license as the original.
 	<line></line>	
 	<line>Rotor Start</line>
     <line>1. The r key toggles the starboard and port rotors on and off</line>
-    <line>3. The Scorpion is equiped with two dual co-axial ducted rotors driven by 2MW counter-rotating annular ceramic motors.</line>
+    <line>3. The Scorpion is equiped with two dual co-axial ducted rotors driven by 2MW counter-rotating annular ceramic motors</line>
     <line>   Fixed at the standard dyhedral of eight degree upward angle with a constant speed of 1770rpm delivering</line>	
 	<line>   a sea level top speed of 200kts and max climb rate of 545 meters per minute and 100% UC cruise at 86kts</line>
 	<line></line>	
@@ -59,18 +59,20 @@ you must distribute your contributions under the same license as the original.
     <line>3. Adjust Yaw using rudder peddles</line>	
 	<line></line>
 	<line>Hover Flight Mode</line>
-    <line>1. Adjust rise and fall using the throttle collective</line>
-    <line>2. Adjust Longtitudinal and Lateral speed using yoke cyclic</line>
-    <line>3. Adjust Yaw using rudder peddles</line>
-    <line>4. Rated too 100kts severe gusts</line>		
+    <line>1. initial hover speed is set at 12fps max, Adjust using the i and o key</line>	
+    <line>2. Adjust rise and fall using the throttle collective</line>
+    <line>3. Adjust Longtitudinal and Lateral speed using yoke cyclic</line>
+    <line>4. Adjust Yaw using rudder peddles</line>
+    <line>5. Rated too 100kts severe gusts</line>		
 	<line></line>
 	<line>Rotors off Flight Mode</line>
     <line>Upon detection of a failure of either rotors, rotors off HUD mode is automatically engaged</line>
-    <line>1. Simulataneously the pilot must quickly pull the nose up whilst pushing the throttle collective forward</line>
-	<line>2. Manage the throttle collective to spin the rotors up past their red line building up Landing Flair capability</line>
-	<line>3. VERY gentle control input, land as quick as possible </line>
+    <line>1. The pilots MUST push the throttle collective to zero. Elevator and Roll commands are disengaged,</line>
+    <line>   directional control is via the rudder peddles</line>	
+    <line>2. The rotors off systems regulates the descent to 25fps with a forward speed of 35fps</line>
+    <line>3. The pilot should endeavour to identify a suitable landing zone</line>
+    <line>4. Use of the throttle collective to flair upon landing is advised, push throttle collective forward imediateley on touch-down</line>	
 	<line></line>	
-
   </help>
 
   </PropertyList>

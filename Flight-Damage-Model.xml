@@ -56,7 +56,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<property type="double" value="0.262">propulsion/engine[0]/pitch-angle-rad</property>
 		<property type="double" value="0.262">propulsion/engine[1]/pitch-angle-rad</property>
 		<property type="double" value="1.57">propulsion/pitch-default-angle-rad</property>
-		<property type="double" value="0.88">metrics/fuselage-Cd</property>
+		<property type="double" value="0.8">metrics/fuselage-Cd</property>
 		
 	</metrics>				
 					
@@ -532,14 +532,9 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<value>1</value>	
 			</function>
 			<location unit="FT">		
-			  <x>25.92</x>
-			  <z>3.75</z>				
-			</location>
-			<direction> <!-- optional for initial direction vector -->
-			  <x> 0 </x>
-			  <y> 0 </y>
-			  <z> 0 </z>
-			</direction>
+				<x>25.92</x>
+				<z>3.75</z>				
+			</location>			
 		</force>	
 		
 		<force name="fuselage" frame="BODY">			
@@ -547,12 +542,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 				<value>1</value>	
 			</function>
 			<location unit="FT">			
-			</location>
-			<direction> <!-- optional for initial direction vector -->
-			  <x> 0 </x>
-			  <y> 0 </y>
-			  <z> 0 </z>
-			</direction>
+			</location>				
 		</force>
 		
 		<force name="ground_effect" frame="LOCAL">			
@@ -562,12 +552,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 			<location unit="FT">		
 				<x>4.92</x>
 				<z>4.62</z>				
-			</location>
-			<direction> <!-- optional for initial direction vector -->
-			  <x> 0 </x>
-			  <y> 0 </y>
-			  <z> 0 </z>
-			</direction>
+			</location>			
 		</force>							
 
 	</external_reactions>	

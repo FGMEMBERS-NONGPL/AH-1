@@ -80,13 +80,13 @@
 	<option>vertical</option>
 	<option>right</option>
 	<option>notext</option>
-	<major-divisions>500</major-divisions>
+	<major-divisions>250</major-divisions>
 	<minor-divisions>0</minor-divisions>
 	<enable-pointer>true</enable-pointer>
 	<pointer-type>fixed</pointer-type>
 	<input>
 		<property>fdm/jsbsim/propulsion/engine[2]/propeller-rpm</property>
-		<max>8000</max>
+		<max>3000</max>
 		<min>1000</min>
 	</input>
    	<condition>
@@ -105,13 +105,13 @@
 	<option>vertical</option>
 	<option>left</option>
 	<option>notext</option>
-	<major-divisions>500</major-divisions>
+	<major-divisions>250</major-divisions>
 	<minor-divisions>0</minor-divisions>
 	<enable-pointer>true</enable-pointer>
 	<pointer-type>fixed</pointer-type>
 	<input>
 		<property>fdm/jsbsim/propulsion/engine[3]/propeller-rpm</property>
-		<max>8000</max>
+		<max>3000</max>
 		<min>1000</min>
 	</input>
    	<condition>
@@ -151,13 +151,13 @@
 	<option>vertical</option>
 	<option>right</option>
 	<option>notext</option>
-	<major-divisions>500</major-divisions>
+	<major-divisions>250</major-divisions>
 	<minor-divisions>0</minor-divisions>
 	<enable-pointer>true</enable-pointer>
 	<pointer-type>fixed</pointer-type>
 	<input>
 		<property>fdm/jsbsim/propulsion/engine[4]/propeller-rpm</property>
-		<max>8000</max>
+		<max>3000</max>
 		<min>1000</min>
 	</input>
    	<condition>
@@ -176,13 +176,13 @@
 	<option>vertical</option>
 	<option>left</option>
 	<option>notext</option>
-	<major-divisions>500</major-divisions>
+	<major-divisions>250</major-divisions>
 	<minor-divisions>0</minor-divisions>
 	<enable-pointer>true</enable-pointer>
 	<pointer-type>fixed</pointer-type>
 	<input>
 		<property>fdm/jsbsim/propulsion/engine[5]/propeller-rpm</property>
-		<max>8000</max>
+		<max>3000</max>
 		<min>1000</min>
 	</input>
    	<condition>
@@ -200,7 +200,7 @@
 	<x>55</x>
 	<y>-12.5</y>
 	<halign>center</halign>
-	<format>100fps</format>
+	<format>40fps</format>
 	<box>false</box>
 	<option>center</option>
   	<condition>
@@ -219,20 +219,20 @@
 	<option>vertical</option>
 	<option>right</option>
 	<option>notext</option>
-	<major-divisions>25</major-divisions>
+	<major-divisions>29</major-divisions>
 	<minor-divisions>0</minor-divisions>
 	<enable-pointer>true</enable-pointer>
 	<pointer-type>fixed</pointer-type>
 	<input>
 		<property>/velocities/vertical-speed-fps</property>
-		<max>100</max>
-		<min>-100</min>
+		<max>40</max>
+		<min>-40</min>
 	</input>
    	<condition>
-		<equals>
-			<property>fdm/jsbsim/T4T/AGP/mode-0</property>
+		<not-equals>
+			<property>fdm/jsbsim/T4T/AGP/mode-2</property>
 			<value>1</value>
-		</equals>
+		</not-equals>
 	</condition>  
 </gauge>
 <label>
@@ -242,7 +242,7 @@
 	<x>55</x>
 	<y>-97.5</y>
 	<halign>center</halign>
-	<format>100fps</format>
+	<format>-40fps</format>
 	<box>false</box>
 	<option>center</option>
   	<condition>
@@ -494,7 +494,7 @@
 				<value>1</value>
 			</not-equals>
 		</and>
-	</condition>	
+	</condition>
 </label>
 
 	<!-- NORMAL MODE -->
@@ -510,11 +510,43 @@
 	<box>false</box>
 	<option>center</option>
   	<condition>
-		<equals>
-			<property>fdm/jsbsim/T4T/AGP/mode-1</property>
-			<value>1</value>
-		</equals>
+		<and>	
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-1</property>
+				<value>1</value>
+			</equals>
+			<not-equals>
+				<property>fdm/jsbsim/propulsion/WEP</property>
+				<value>1</value>
+			</not-equals>
+		</and>			
 	</condition>	
+</label>
+<label>
+	<name>F MODE 1</name>
+	<width>1</width>
+	<height>1</height>
+	<x>0</x>
+	<y>-107.5</y>
+	<halign>center</halign>
+	<format>WEP RPM</format>
+	<box>false</box>
+	<option>center</option>
+  	<condition>
+		<and>	
+			<equals>
+				<property>fdm/jsbsim/T4T/AGP/mode-1</property>
+				<value>1</value>
+			</equals>
+			<equals>
+				<property>fdm/jsbsim/propulsion/WEP</property>
+				<value>1</value>
+			</equals>
+		</and>			
+	</condition>
+	<blinking>
+		<interval>0.25</interval>
+	</blinking>		
 </label>
 
 <label>
@@ -592,10 +624,10 @@
 	<halign>center</halign>
    	<condition>
 		<and>
-			<less-than-equals>
-				<property>/position/altitude-agl-ft</property>
-				<value>20</value>
-			</less-than-equals>		
+			<equals>
+				<property>fdm/jsbsim/gear/wow</property>
+				<value>1</value>
+			</equals>	
 			<equals>
 				<property>fdm/jsbsim/T4T/AGP/mode-1</property>
 				<value>1</value>
@@ -610,19 +642,19 @@
 			</greater-than>
 			<less-than>
 				<property>fdm/jsbsim/propulsion/engine[2]/propeller-rpm</property>
-				<value>1700</value>
+				<value>1400</value>
 			</less-than>
 			<less-than>
 				<property>fdm/jsbsim/propulsion/engine[3]/propeller-rpm</property>
-				<value>1700</value>
+				<value>1400</value>
 			</less-than>
 			<less-than>
 				<property>fdm/jsbsim/propulsion/engine[4]/propeller-rpm</property>
-				<value>1700</value>
+				<value>1400</value>
 			</less-than>
 			<less-than>
 				<property>fdm/jsbsim/propulsion/engine[5]/propeller-rpm</property>
-				<value>1700</value>
+				<value>1400</value>
 			</less-than>			
 		</and>			
 	</condition>
@@ -634,33 +666,33 @@
 	<x>0</x>
 	<y>-85</y>
 	<box>false</box>
-	<format>ROTORS ON</format>
+	<format>ROTORS OK</format>
 	<halign>center</halign>
    	<condition>
 		<and>
-			<less-than-equals>
-				<property>/position/altitude-agl-ft</property>
-				<value>40</value>
-			</less-than-equals>				
+			<equals>
+				<property>fdm/jsbsim/gear/wow</property>
+				<value>1</value>
+			</equals>			
 			<equals>
 				<property>fdm/jsbsim/T4T/AGP/mode-1</property>
 				<value>1</value>
 			</equals>
 			<greater-than>
 				<property>fdm/jsbsim/propulsion/engine[2]/propeller-rpm</property>
-				<value>1700</value>
+				<value>1400</value>
 			</greater-than>
 			<greater-than>
 				<property>fdm/jsbsim/propulsion/engine[3]/propeller-rpm</property>
-				<value>1700</value>
+				<value>1400</value>
 			</greater-than>
 			<greater-than>
 				<property>fdm/jsbsim/propulsion/engine[4]/propeller-rpm</property>
-				<value>1700</value>
+				<value>1400</value>
 			</greater-than>
 			<greater-than>
 				<property>fdm/jsbsim/propulsion/engine[5]/propeller-rpm</property>
-				<value>1700</value>
+				<value>1400</value>
 			</greater-than>
 		</and>
 	</condition>
@@ -669,36 +701,6 @@
 	</blinking>		
 </label>
 
-<label>
-	<name>ENGINES OFF</name>
-	<width>1</width>
-	<height>1</height>
-	<x>0</x>
-	<y>-85</y>
-	<halign>center</halign>
-	<format>ENGINES OFF</format>
-	<box>false</box>
-	<option>center</option>
-  	<condition>
-		<and>
-			<equals>
-				<property>fdm/jsbsim/T4T/AGP/mode-1</property>
-				<value>1</value>
-			</equals>
-			<less-than>
-				<property>fdm/jsbsim/propulsion/engine[0]/set-running</property>
-				<value>1</value>
-			</less-than>
-			<less-than>
-				<property>fdm/jsbsim/propulsion/engine[1]/set-running</property>
-				<value>1</value>
-			</less-than>
-		</and>
-	</condition>
-	<blinking>
-		<interval>0.5</interval>
-	</blinking>	
-</label>
 <label>
 	<name>PORT ENGINES OFF</name>
 	<width>1</width>
@@ -825,32 +827,6 @@
 		</equals>
 	</condition>
 </turn-bank-indicator>
-
-<gauge>
-	<name>VSI</name>
-	<x>55</x>
-	<y>-90</y>
-	<width>10</width>
-	<height>75</height>
-	<option>vertical</option>
-	<option>right</option>
-	<option>notext</option>
-	<major-divisions>25</major-divisions>
-	<minor-divisions>0</minor-divisions>
-	<enable-pointer>true</enable-pointer>
-	<pointer-type>fixed</pointer-type>
-	<input>
-		<property>/velocities/vertical-speed-fps</property>
-		<max>50</max>
-		<min>-50</min>
-	</input>
-   	<condition>
-		<equals>
-			<property>fdm/jsbsim/T4T/AGP/mode-1</property>
-			<value>1</value>
-		</equals>
-	</condition>  
-</gauge>
 
 	<!-- HOVER MODE -->
 	
@@ -2378,14 +2354,14 @@
 	<option>vertical</option>
 	<option>left</option>
 	<option>notext</option>
-	<major-divisions>7</major-divisions>
+	<major-divisions>4</major-divisions>
 	<minor-divisions>0</minor-divisions>
 	<enable-pointer>true</enable-pointer>
 	<pointer-type>fixed</pointer-type>
 	<input>
 		<property>fdm/jsbsim/T4T/AGP/PID/collective/target_down-fps</property>
-		<max>35</max>
-		<min>-35</min>
+		<max>18</max>
+		<min>-18</min>
 	</input>
    	<condition>
 		<and>
@@ -2415,8 +2391,8 @@
 	<pointer-type>fixed</pointer-type>
 	<input>
 		<property>/velocities/vertical-speed-fps</property>
-		<max>35</max>
-		<min>-35</min>
+		<max>18</max>
+		<min>-18</min>
 	</input>
    	<condition>
 		<and>

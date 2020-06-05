@@ -27,18 +27,24 @@ you must distribute your contributions under the same license as the original.
 
 <system name="Engine">
 
-<property type="bool" value="0">T4T/AGP/mode</property>
 <property type="double" value="1">T4T/one</property>
-<property type="bool" value="0">propulsion/rotors-on</property>
+<property type="bool" value="0">T4T/AGP/mode</property>
+
 <property type="bool" value="0">propulsion/governor_port-on</property>
 <property type="bool" value="0">propulsion/governor_starboard-on</property>
-<property type="double" value="0">propulsion/set_rotor-rpm</property>
 <property type="double" value="10000">propulsion/set_turbine-rpm</property>
+
+<property type="double" value="0">propulsion/WEP</property>
+<property type="bool" value="0">propulsion/rotors-on</property>
+<property type="double" value="1500">propulsion/set_rotor-rpm</property>
+<property type="double" value="1500">propulsion/rotors_port-rpm</property>
+<property type="double" value="1500">propulsion/rotors_starboard-rpm</property>
 <property type="double" value="0">propulsion/power-demand-kW</property>
+
 
     <channel name="Magnussen_KE-76 Governor" execute="propulsion/governor_port-on">
 
-		<scheduled_gain>
+		<scheduled_gain name="propulsion/engine[0]/power-generated-kW">
 			<input>T4T/one</input>
 			<table>
 				<independentVar>propulsion/engine[0]/power-hp</independentVar>
@@ -49,12 +55,12 @@ you must distribute your contributions under the same license as the original.
 			</table>
 			<output>propulsion/engine[0]/power-generated-kW</output>
 		</scheduled_gain>
-		<summer>
+		<summer name="propulsion/engine[0]/governor/error">
 			<input>propulsion/engine[0]/power-generated-kW</input>
 			<input>-propulsion/power-demand-kW</input>
 			<output>propulsion/engine[0]/governor/error</output>
 		</summer>		
-		<pid>
+		<pid name="propulsion/engine[0]/governor/output">
 			<input>-propulsion/engine[0]/governor/error</input>
 			<kp>0.01</kp>
 			<ki>0.01</ki>
@@ -71,7 +77,7 @@ you must distribute your contributions under the same license as the original.
 	
     <channel name="Magnussen_KE-76 Governor" execute="propulsion/governor_starboard-on">
 
-		<scheduled_gain>
+		<scheduled_gain name="propulsion/engine[1]/power-generated-kW">
 			<input>T4T/one</input>
 			<table>
 				<independentVar>propulsion/engine[1]/power-hp</independentVar>
@@ -82,12 +88,12 @@ you must distribute your contributions under the same license as the original.
 			</table>
 			<output>propulsion/engine[1]/power-generated-kW</output>
 		</scheduled_gain>
-		<summer>
+		<summer name="propulsion/engine[1]/governor/error">
 			<input>propulsion/engine[1]/power-generated-kW</input>
 			<input>-propulsion/power-demand-kW</input>
 			<output>propulsion/engine[1]/governor/error</output>
 		</summer>		
-		<pid>
+		<pid name="propulsion/engine[1]/governor/output">
 			<input>-propulsion/engine[1]/governor/error</input>
 			<kp>0.01</kp>
 			<ki>0.01</ki>
@@ -106,13 +112,13 @@ you must distribute your contributions under the same license as the original.
 
 	<!-- Charge -->
 
-		<summer>
+		<summer name="propulsion/power-generated-kW">
 			<input>propulsion/engine[0]/power-generated-kW</input>
 			<input>propulsion/engine[1]/power-generated-kW</input>		
 			<output>propulsion/power-generated-kW</output>
 		</summer>
 
-		<scheduled_gain>
+		<scheduled_gain name="propulsion/tank[5]/charging-rate-pps">
 			<input>T4T/one</input>
 			<table>
 				<independentVar>propulsion/power-generated-kW</independentVar>
@@ -126,7 +132,7 @@ you must distribute your contributions under the same license as the original.
 	
 	<!-- Drain -->	
 	
-		<summer>
+		<summer name="propulsion/rotor-power-kW">
 			<input>propulsion/engine[2]/rotor-power-kW</input>
 			<input>propulsion/engine[3]/rotor-power-kW</input>
 			<input>propulsion/engine[4]/rotor-power-kW</input>
@@ -134,7 +140,7 @@ you must distribute your contributions under the same license as the original.
 			<output>propulsion/rotor-power-kW</output>
 		</summer>
 		
-		<scheduled_gain>
+		<scheduled_gain name="propulsion/tank[5]/draining-rate-pps">
 			<input>T4T/one</input>
 			<table>
 				<independentVar>propulsion/rotor-power-kW</independentVar>
@@ -168,7 +174,7 @@ you must distribute your contributions under the same license as the original.
 			<output>propulsion/governor_starboard-on</output>
 		</switch>
 
-		<pure_gain>
+		<pure_gain name="propulsion/power-shared-kW">
 			<input>propulsion/rotor-power-kW</input>		
 			<gain>0.5</gain>
 			<output>propulsion/power-shared-kW</output>
@@ -211,8 +217,8 @@ you must distribute your contributions under the same license as the original.
 		</kinematic>
 
 		<switch>
-			<default value="1770"/>
-			<test value="2124">
+			<default value="1500"/>
+			<test value="1800">
 				propulsion/WEP eq 1
 			</test>
 			<output>propulsion/set_rotor-rpm</output>
@@ -222,31 +228,8 @@ you must distribute your contributions under the same license as the original.
 			<gain>propulsion/set_rotor-rpm</gain>
 			<output>propulsion/set_rotor-rpm</output>
 		</pure_gain>
-		
-		<scheduled_gain name="propulsion/rotors_port-rpm">
-			<input>propulsion/set_rotor-rpm</input>
-			<table>
-				<independentVar>velocities/p-rad_sec</independentVar>
-				<tableData>
-					-2	1.2				
-					2	0.8
-				</tableData>
-			</table>
-			<output>propulsion/rotors_port-rpm</output>
-		</scheduled_gain>
 
-		<scheduled_gain name="propulsion/rotors_starboard-rpm">
-			<input>propulsion/set_rotor-rpm</input>
-			<table>
-				<independentVar>velocities/p-rad_sec</independentVar>
-				<tableData>
-					-2	0.8		
-					2	1.2
-				</tableData>
-			</table>
-			<output>propulsion/rotors_starboard-rpm</output>
-		</scheduled_gain>		
-			
+
 <!--	Port Rotor	-->
 	
 		<summer name="propulsion/engine[2]/rpm-pid/error-rpm">
@@ -262,14 +245,21 @@ you must distribute your contributions under the same license as the original.
 			<output>propulsion/engine[2]/rpm-pid/output</output>
 		</pid>
 		
-		<summer>
+		<summer name="propulsion/rotor_port_governor">
 			<input>/controls/engines/engine[2]/throttle</input>
 			<input>propulsion/engine[2]/rpm-pid</input>
-			<output>/controls/engines/engine[2]/throttle</output>
-			<output>/controls/engines/engine[3]/throttle</output>
 		</summer>
 		
-		<pure_gain>
+		<switch>
+			<default value="0"/>
+			<test value="propulsion/rotor_port_governor">
+				propulsion/rotors-on eq 1
+			</test>
+			<output>/controls/engines/engine[2]/throttle</output>
+			<output>/controls/engines/engine[3]/throttle</output>
+		</switch>		
+		
+		<pure_gain name="propulsion/engine[2]/rotor-power-kW">
 			<input>/controls/engines/engine[3]/throttle</input>
 			<gain>2160</gain> <!-- rated power of motor * efficiency(92%) or 1.08 -->
 			<output>propulsion/engine[2]/rotor-power-kW</output>
@@ -291,14 +281,21 @@ you must distribute your contributions under the same license as the original.
 			<output>propulsion/engine[4]/rpm-pid/output</output>
 		</pid>
 		
-		<summer>
+		<summer name="propulsion/rotor_starboard_governor">
 			<input>/controls/engines/engine[4]/throttle</input>
 			<input>propulsion/engine[4]/rpm-pid</input>
+		</summer>
+		
+		<switch>
+			<default value="0"/>
+			<test value="propulsion/rotor_starboard_governor">
+				propulsion/rotors-on eq 1
+			</test>
 			<output>/controls/engines/engine[4]/throttle</output>
 			<output>/controls/engines/engine[5]/throttle</output>
-		</summer>
+		</switch>		
 
-		<pure_gain>
+		<pure_gain name="propulsion/engine[4]/rotor-power-kW">
 			<input>/controls/engines/engine[5]/throttle</input>		
 			<gain>2160</gain> <!-- rated power of motor * efficiency(92%) or 1.08 -->
 			<output>propulsion/engine[4]/rotor-power-kW</output>
